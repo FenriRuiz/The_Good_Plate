@@ -19,18 +19,21 @@ final items = List<String>.generate(10000, (i) => "Item $i");
               SizedBox(height: 20.0),
               Stack(children: <Widget>[
                 Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: editingController,
-                  decoration: InputDecoration(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: editingController,
+                    decoration: InputDecoration(
                       labelText: "Buscar...",
                       hintText: "Buscar...",
                       prefixIcon: Icon(Icons.search),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                        borderRadius: BorderRadius.all(Radius.circular(25.0))
+                      )
+                    ),
+                  ),
                 ),
-              ),
-              ],)
+              ]),
+                            
             ],
           ),
         ),

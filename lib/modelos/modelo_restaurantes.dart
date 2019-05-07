@@ -1,4 +1,4 @@
-class ModeloRestaurante{
+class ModeloRestaurante {
   String _nombre;
   double _distanciaKm;
   String _estado;
@@ -7,8 +7,14 @@ class ModeloRestaurante{
   bool _patrocinado;
   bool _meGusta;
 
-  ModeloRestaurante({String nombre, double distanciaKm, String estado,
-  String descripcion, String imagen, bool patrocinado, bool meGusta}){
+  ModeloRestaurante(
+      {String nombre,
+      double distanciaKm,
+      String estado,
+      String descripcion,
+      String imagen,
+      bool patrocinado,
+      bool meGusta}) {
     this._nombre = nombre;
     this._distanciaKm = distanciaKm;
     this._estado = estado;
@@ -25,6 +31,135 @@ class ModeloRestaurante{
   String get imagen => _imagen;
   bool get patrocinado => _patrocinado;
   bool get meGusta => _meGusta;
-
 }
-List<ModeloRestaurante>
+
+List<ModeloRestaurante> restaurantes = <ModeloRestaurante>[
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+  ModeloRestaurante(
+      nombre: "",
+      distanciaKm: 2.5,
+      estado: "",
+      descripcion: "",
+      imagen: "",
+      patrocinado: false,
+      meGusta: false),
+];
