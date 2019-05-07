@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 import 'package:the_good_plate/rutas/registrar.dart';
 
+
 class LoginActivity extends StatefulWidget{
   @override
   _LoginActivityState createState() => new _LoginActivityState();
@@ -97,11 +98,23 @@ class _LoginActivityState extends State<LoginActivity>{
                 SizedBox(height: 30.0),
                 loginButon,
                 SizedBox(height: 10.0),
-                registrarButon
+                registrarButon,
+                    Container(
+                      padding: EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          new Image.asset('images/facebook.png'),
+                          new Image.asset('images/googleplus.png'),
+                          new Image.asset('images/twitter.png')
+                        ],
+                      )
+                    )
               ],
             ),
           ),
         ),
+        
       ),
     );
   }
