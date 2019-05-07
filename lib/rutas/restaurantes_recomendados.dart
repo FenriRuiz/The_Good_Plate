@@ -157,5 +157,59 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
         }
       }
     }
+  TextEditingController editingController = TextEditingController();
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SingleChildScrollView(
+            child: Column(
+      children: <Widget>[
+        //Row(
+
+        SizedBox(height: 20.0),
+        TextField(
+            controller: editingController,
+            decoration: InputDecoration(
+                labelText: "Buscar...",
+                hintText: "Buscar...",
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0))))),
+        SizedBox(height: 20.0),
+        Center(
+            child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              //child: new ListaRestaurantes()
+            ),
+          ],
+        ))
+      ],
+    )));
   }
 }
