@@ -12,23 +12,41 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Column(
+        body: Column(
       children: <Widget>[
-        //Row(
-
-        SizedBox(height: 20.0),
-        TextField(
-            controller: editingController,
-            decoration: InputDecoration(
-                labelText: "Buscar...",
-                hintText: "Buscar...",
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(25.0))))),
-        SizedBox(height: 20.0),
-        Center(
-            child: Column(
+        Stack(
+          children: <Widget>[
+            Padding(
+                padding: const EdgeInsets.fromLTRB(10, 35, 10, 0),
+                child: Ink(
+                  decoration: ShapeDecoration(
+                    color: Color.fromRGBO(100, 230, 235, 100),
+                    shape: CircleBorder()
+                  ),
+                  child: IconButton(
+                    iconSize: 35,
+                    icon: new Icon(Icons.menu),
+                    onPressed: () {},
+                  ),
+                )),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(65, 30, 10, 0),
+              child: TextField(
+                  controller: editingController,
+                  decoration: InputDecoration(
+                      labelText: "Buscar...",
+                      hintText: "Buscar...",
+                      prefixIcon: Icon(Icons.search),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25.0))))),
+            )
+          ],
+        ),
+        Expanded(
+            child: SingleChildScrollView(
+                child: Center(
+                    child: Column(
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -59,8 +77,8 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
               //child: new ListaRestaurantes()
             ),
           ],
-        ))
+        ))))
       ],
-    )));
+    ));
   }
 }
