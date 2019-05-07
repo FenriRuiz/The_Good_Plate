@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
+import 'package:the_good_plate/rutas/registrar.dart';
 
 class LoginActivity extends StatefulWidget{
   @override
@@ -60,7 +61,12 @@ class _LoginActivityState extends State<LoginActivity>{
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context, 
+            buildMaterialPageRouteRegistro()
+          );
+        },
         child: Text("Registrar",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -106,5 +112,12 @@ class _LoginActivityState extends State<LoginActivity>{
                 (BuildContext context) => RestaurantesRecomendados()
                 )
               );
+  }
+  MaterialPageRoute buildMaterialPageRouteRegistro(){
+    return MaterialPageRoute(
+      builder:(
+        (BuildContext context) => RegistrarActivity()
+      )
+    );
   }
 }
