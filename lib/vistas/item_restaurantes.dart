@@ -9,18 +9,15 @@ class ItemRestaurante extends StatelessWidget{
   Widget build(BuildContext context){
     return Column(children: <Widget>[
       new ListTile(
+      
         leading: Container(
+          child: Image.network(
+            _restaurante.imagen,
             width: 60.0,
             height: 60.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(const Radius.circular(60.0)),
-                color: Colors.transparent,
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: obtenerImagen(_restaurante.imagen)
-                )
-            )
-          ),
+            fit: BoxFit.cover,
+          )
+        ),
         title: new Row(
           children: <Widget>[
             new Text(
@@ -39,7 +36,7 @@ class ItemRestaurante extends StatelessWidget{
         ),
         subtitle: new Container(
           child: new Text(
-            _contacto.mensaje,
+            _restaurante.descripcion,
             style: new TextStyle(
               fontSize: 15.0,
               color: Colors.grey,
@@ -47,22 +44,18 @@ class ItemRestaurante extends StatelessWidget{
           ),
           padding: const EdgeInsets.only(top: 5.0),
         ),
-        onTap: (){
+        /*onTap: (){
           Route ruta = new MaterialPageRoute(
             builder: (context) => new Chat(
               contacto: _contacto
             )
           );
           Navigator.push(context, ruta);
-        },
+        },*/
       ),
       new Divider(
         height: 18.0,
       ),
     ]);
-  }
-
-  AssetImage obtenerImagen(String url){
-
   }
 }
