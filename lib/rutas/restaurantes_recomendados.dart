@@ -1,45 +1,66 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/rutas/lista_restaurantes.dart';
 
-class RestaurantesRecomendados extends StatefulWidget{
+class RestaurantesRecomendados extends StatefulWidget {
   @override
-  _RestaurantesRecomendadosState createState() => new _RestaurantesRecomendadosState();
+  _RestaurantesRecomendadosState createState() =>
+      new _RestaurantesRecomendadosState();
 }
 
-class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados>{
+class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
+  TextEditingController editingController = TextEditingController();
 
-TextEditingController editingController = TextEditingController();
-final items = List<String>.generate(10000, (i) => "Item $i");
-
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
+        body: SingleChildScrollView(
+            child: Column(
+      children: <Widget>[
+        //Row(
+
+        SizedBox(height: 20.0),
+        TextField(
+            controller: editingController,
+            decoration: InputDecoration(
+                labelText: "Buscar...",
+                hintText: "Buscar...",
+                prefixIcon: Icon(Icons.search),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(25.0))))),
+        SizedBox(height: 20.0),
+        Center(
+            child: Column(
           children: <Widget>[
-            SizedBox(height: 20.0),
-            Stack(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: editingController,
-                  decoration: InputDecoration(
-                    labelText: "Buscar...",
-                    hintText: "Buscar...",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(25.0))
-                    )
-                  ),
-                ),
-              ),
-            ]),
-            SizedBox(height: 20.0),
-            new ListaRestaurantes()
-            
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Image.asset('images/Restaurante.png'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              //child: new ListaRestaurantes()
+            ),
           ],
-        ),
-      
-      ) 
-    );
+        ))
+      ],
+    )));
   }
 }
