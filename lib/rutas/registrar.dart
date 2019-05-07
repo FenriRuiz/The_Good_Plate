@@ -73,10 +73,12 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
     );
 
     final edadField = DropdownButton(
+      isExpanded: true,
       value: _currentEdad,
       onChanged: changedDropDownItem,
       items: _dropDownMenuItems,
       style: style,
+
     );
     final registrarBtn = Material(
       elevation: 5.0,
@@ -94,36 +96,34 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(60.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 25.0),
-                usuarioField,
-                SizedBox(height: 25.0),
-                correoField,
-                SizedBox(height: 25.0),
-                passwordField,
-                SizedBox(height: 25.0),
-                Container(
-                  padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-                  width: MediaQuery.of(context).size.width,
-                  child: DropdownButtonHideUnderline(child: edadField),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1.2,
-                      color: Color.fromRGBO(150, 150, 150, 70)
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(60.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(height: 25.0),
+                  usuarioField,
+                  SizedBox(height: 25.0),
+                  correoField,
+                  SizedBox(height: 25.0),
+                  passwordField,
+                  SizedBox(height: 25.0),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+                    width: MediaQuery.of(context).size.width,
+                    child: DropdownButtonHideUnderline(child: edadField),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1.2, color: Color.fromRGBO(150, 150, 150, 70)),
+                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(32.0)
-                    ),  
                   ),
-                ),
-                SizedBox(height: 25.0),
-                registrarBtn
-              ],
+                  SizedBox(height: 25.0),
+                  registrarBtn
+                ],
+              ),
             ),
           ),
         ),
