@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
+import 'package:the_good_plate/rutas/restaurante.dart';
 
 class ItemRestaurante extends StatelessWidget {
   final ModeloRestaurante _restaurante;
@@ -7,76 +8,56 @@ class ItemRestaurante extends StatelessWidget {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
   Widget build(BuildContext context) {
-
-    return new ClipRRect(
-        borderRadius: BorderRadius.circular(25),
-        child: Card(
-          color: Color.fromRGBO(60, 190, 200, 100),
-          // Los hijos dentro de card en columnas, debajo de otro
-          child: new Column(
-            children: <Widget>[
-              // Agregamos una imagen consumida desde internet
-              ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                  child: Image.network(_restaurante.imagen),
-                ),
-              ),
-              // Agregamos un contenedor para el texto
-              new Container(
-                padding: const EdgeInsets.fromLTRB(
-                    0, 10, 0, 5), // Un padding para todo
-                child: Text(
-                  _restaurante.nombre,
-                  style: style,
-                  softWrap: true,
-                ),
-              ),
-              new Container(
-                padding: const EdgeInsets.fromLTRB(
-                    0, 0, 0, 5), // Un padding para todo
-                child: Text(
-                  _restaurante.descripcion,
-                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
-                  softWrap: true,
-                ),
-              ),
-              new Padding(
-                  // Esta seccion sera para los botones de acciones
-                  padding: new EdgeInsets.all(
-                      7.0), // Un padding general entre cada elemento
-                  child: new Row(
-                    // mainAxisAlignment permite alinear el contenido dentro de Row
-                    // en este caso le digo que use spaceBetwee, esto hara que
-                    // cualquier espacio horizontal que no se haya asignado dentro de children
-                    // se divida de manera uniforme y se coloca entre los elementos secundarios.
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      // Agregamos los botones de tipo Flat, un icono, un texto y un evento
-                      new FlatButton.icon(
-                        icon: Icon(Icons.star_border,
-                            size: 40.0, color: Colors.amberAccent),
-                        label: const Text(''),
-                        onPressed: () {
-                          Icon(Icons.star,
-                              size: 40.0, color: Colors.amberAccent);
-                        },
+    return new InkWell(
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(_restaurante,))),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Card(
+              color: Color.fromRGBO(60, 190, 200, 100),
+              child: new Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      child: Hero(
+                        child: Image.network(_restaurante.imagen),
+                        tag: _restaurante.imagen,
                       ),
-                      new FlatButton.icon(
-                        // Un icono puede recibir muchos atributos, aqui solo usaremos icono, tamaño y color
-                        icon: const Icon(Icons.favorite_border,
-                            size: 40.0, color: Colors.redAccent),
-                        label: const Text(''),
-                        // Esto mostrara 'Me encanta' por la terminal
-                        onPressed: () {
-                          print('Me encanta');
-                        },
-                      )
-                    ],
-                  ))
-            ],
-          ),
-        ));
+                    ),
+                  ),
+                  new Container(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+                    child: Text(
+                      _restaurante.nombre,
+                      style: style,
+                      softWrap: true,
+                    ),
+                  ),
+                  new Container(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5), 
+                    child: Text(
+                      _restaurante.descripcion,
+                      style:
+                          TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
+                      softWrap: true,
+                    ),
+                  ),
+                  new Padding(
+                      padding: new EdgeInsets.all(7.0),
+
+                      child: new Row(
+
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          
+                          new Icon(Icons.star_border, size: 40.0, color: Colors.amberAccent),
+                          new Icon(Icons.favorite_border,size: 40.0, color: Colors.redAccent),
+                          
+                        ],
+                      ))
+                ],
+              ),
+            )));
   }
 }
