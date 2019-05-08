@@ -159,6 +159,7 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
               padding: const EdgeInsets.fromLTRB(65, 30, 10, 0),
               child: TextField(
                   controller: _controller,
+                  style: TextStyle(fontFamily: 'Montserrat', fontSize: 18.0),
                   decoration: InputDecoration(
                       labelText: "Buscar...",
                       hintText: "Buscar...",

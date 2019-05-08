@@ -4,6 +4,7 @@ import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 class ItemRestaurante extends StatelessWidget {
   final ModeloRestaurante _restaurante;
   ItemRestaurante(this._restaurante);
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
   Widget build(BuildContext context) {
     // return Column(children: <Widget>[
@@ -58,9 +59,9 @@ class ItemRestaurante extends StatelessWidget {
     //   ),
     // ]);
     return new ClipRRect(
-      borderRadius: BorderRadius.circular(60),
+      borderRadius: BorderRadius.circular(25),
       child: Card(
-        color: Color.fromRGBO(159, 162, 163, 100),
+        color: Color.fromRGBO(60,190,200,100),
         // Los hijos dentro de card en columnas, debajo de otro
         child: new Column(
           
@@ -68,15 +69,19 @@ class ItemRestaurante extends StatelessWidget {
             
             // Agregamos una imagen consumida desde internet
             ClipRRect(
-              borderRadius: BorderRadius.circular(40),
-              child: Image.network(
+              borderRadius: BorderRadius.circular(25),
+              child: Padding( 
+                padding: const EdgeInsets.fromLTRB(5,5,5,5  ),
+                child:Image.network(
                   _restaurante.imagen),
+              ),
             ),
             // Agregamos un contenedor para el texto
             new Container(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 5), // Un padding para todo
               child: Text(
                 _restaurante.nombre,
+                style: style,
                 softWrap: true,
               ),
             ),
@@ -84,6 +89,7 @@ class ItemRestaurante extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 5), // Un padding para todo
               child: Text(
                 _restaurante.descripcion,
+                style: TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
                 softWrap: true,
               ),
             ),
@@ -96,9 +102,18 @@ class ItemRestaurante extends StatelessWidget {
                   // en este caso le digo que use spaceBetwee, esto hara que
                   // cualquier espacio horizontal que no se haya asignado dentro de children
                   // se divida de manera uniforme y se coloca entre los elementos secundarios.
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     // Agregamos los botones de tipo Flat, un icono, un texto y un evento
+                    new FlatButton.icon(
+                      icon: Icon(Icons.star_border,
+                          size: 40.0, color: Colors.amberAccent),
+                      label: const Text(''),
+                      onPressed: () {
+                        Icon(Icons.star,
+                          size: 40.0, color: Colors.amberAccent);
+                      },
+                    ),
                     new FlatButton.icon(
                       // Un icono puede recibir muchos atributos, aqui solo usaremos icono, tamaño y color                
                       icon: const Icon(Icons.favorite_border,
@@ -107,23 +122,6 @@ class ItemRestaurante extends StatelessWidget {
                       // Esto mostrara 'Me encanta' por la terminal
                       onPressed: () {
                         print('Me encanta');
-                      },
-                    ),
-                    new FlatButton.icon(
-                      icon: const Icon(Icons.comment,
-                          size: 40.0, color: Colors.cyan),
-                      label: const Text(''),
-                      onPressed: () {
-                        print('Comenta algo');
-                      },
-                    ),
-                    new FlatButton.icon(
-                      icon: Icon(Icons.star_border,
-                          size: 40.0, color: Colors.amberAccent),
-                      label: const Text(''),
-                      onPressed: () {
-                        Icon(Icons.star,
-                          size: 40.0, color: Colors.amberAccent);
                       },
                     )
                   ],
