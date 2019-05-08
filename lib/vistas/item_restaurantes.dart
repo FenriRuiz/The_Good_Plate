@@ -4,8 +4,9 @@ import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 class ItemRestaurante extends StatelessWidget{
   
   final ModeloRestaurante _restaurante;
-
   ItemRestaurante(this._restaurante);
+
+
   Widget build(BuildContext context){
     return Column(children: <Widget>[
       new ListTile(
