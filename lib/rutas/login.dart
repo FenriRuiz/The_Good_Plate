@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 import 'package:the_good_plate/rutas/registrar.dart';
+import 'package:the_good_plate/auxiliar/guillotine.dart';
 
 
 class LoginActivity extends StatefulWidget{
@@ -122,7 +123,7 @@ class _LoginActivityState extends State<LoginActivity>{
   MaterialPageRoute buildMaterialPageRoute() {
     return MaterialPageRoute(
               builder:(
-                (BuildContext context) => RestaurantesRecomendados()
+                (BuildContext context) => Guillotine()
                 )
               );
   }

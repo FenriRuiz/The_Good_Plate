@@ -43,6 +43,7 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
     return items;
   }
 
+  @override
   Widget build(BuildContext context) {
     final usuarioField = TextField(
       obscureText: false,
@@ -78,7 +79,6 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
       onChanged: changedDropDownItem,
       items: _dropDownMenuItems,
       style: style,
-
     );
     final registrarBtn = Material(
       elevation: 5.0,

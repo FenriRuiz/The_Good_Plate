@@ -3,6 +3,7 @@ import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 import 'package:the_good_plate/rutas/lista_restaurantes.dart';
 import 'package:the_good_plate/vistas/item_restaurantes.dart';
 
+
 class Restaurante extends StatelessWidget {
   final ModeloRestaurante _restaurante;
   Restaurante(this._restaurante);
