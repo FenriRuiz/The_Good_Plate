@@ -67,7 +67,7 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
                 )
               ],
             ),*/
-            SizedBox(height: 60.0),
+            SizedBox(height: 80.0),
             Expanded(child: Scaffold(body: ListaRestaurantes()))
           ],
         ));

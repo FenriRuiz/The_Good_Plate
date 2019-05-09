@@ -13,8 +13,11 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   AnimationController animationControllerMenu;
   Animation<double> animationMenu;
   Animation<double> animationTitleFadeInOut;
+  Animation<double> animationTitleFadeIn;
   _GuillotineAnimationStatus menuAnimationStatus;
   TextEditingController _controller = TextEditingController();
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+
 
   double pi = 3.14;
 
@@ -25,9 +28,9 @@ class _GuillotineMenuState extends State<GuillotineMenu>
       "color": Colors.white,
     },
     {
-      "icon": Icons.view_agenda,
-      "title": "Restaurantes",
-      "color": Colors.white,
+      "icon": Icons.favorite,
+      "title": "Favoritos",
+      "color": Colors.redAccent,
     },
     {
       "icon": Icons.map,
@@ -36,7 +39,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     },
     {
       "icon": Icons.settings,
-      "title": "Ajustes",
+      "title": "Ajustes de cuenta",
       "color": Colors.white,
     }
   ];
@@ -49,7 +52,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 //Inicialización del controlador de la animacion
     animationControllerMenu = new AnimationController(
         duration: const Duration(
-          milliseconds: 2000,
+          milliseconds: 1000,
         ),
         vsync: this)
       ..addListener(() {});
@@ -59,7 +62,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
         new Tween(begin: -pi / 2.0, end: 0.0).animate(new CurvedAnimation(
       parent: animationControllerMenu,
       curve: Curves.fastLinearToSlowEaseIn,
-      reverseCurve: Curves.fastLinearToSlowEaseIn,
+      reverseCurve: Curves.fastOutSlowIn,
     ))
           ..addListener(() {
             setState(() {
@@ -83,6 +86,15 @@ class _GuillotineMenuState extends State<GuillotineMenu>
         0.0,
         0.5,
         curve: Curves.ease,
+      ),
+    ));
+    animationTitleFadeIn =
+        new Tween(begin: 0.0, end: 1.0).animate(new CurvedAnimation(
+      parent: animationControllerMenu,
+      curve: new Interval(
+        0.0,
+        0.5,
+        curve: Curves.easeIn,
       ),
     ));
   }
@@ -138,8 +150,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
               //*Titulo menu
               new Positioned.fill(
                 top: 70.0,
-                left: 65.0,
-                
+                left: 66.0,
                 child: new Transform.rotate(
                     alignment: Alignment.topLeft,
                     origin: Offset.zero,
@@ -150,7 +161,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                         height: double.infinity,
                         child: new Opacity(
                           opacity: animationTitleFadeInOut.value,
-                          //TODO: Poner el buscador en condiciones  
+                          //TODO: Poner el buscador en condiciones
 
                           child: TextField(
                               controller: _controller,
@@ -180,7 +191,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                 ),
               ),
               //!Buscador
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.fromLTRB(65, 30, 10, 0),
                 child: TextField(
                     controller: _controller,
@@ -192,35 +203,40 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                         border: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(25.0))))),
-              ),
+              ),*/  
               //*Contenido menu
               new Padding(
                 padding: const EdgeInsets.only(left: 64.0, top: 96.0),
                 child: new Container(
                   width: double.infinity,
                   height: double.infinity,
-                  child: new Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: _menus.map((menuItem) {
-                      return new ListTile(
-                        leading: new Icon(
-                          menuItem["icon"],
-                          color: menuItem["color"],
-                        ),
-                        title: RaisedButton(
-                          //TODO: Personalizar los botones del menu
-                          color: Color(0xFF333333),
-                          splashColor: Color.fromRGBO(100, 230, 235, 100),
-                          padding: EdgeInsets.all(0),
-                          onPressed: () {switchUser(menuItem["title"]);},
-                          child: new Text(
-                            menuItem["title"],
-                            style: new TextStyle(
-                                color: menuItem["color"], fontSize: 24.0),
+                  child:new Opacity(
+                    opacity: animationTitleFadeIn.value,
+                    child: new Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: _menus.map((menuItem) {
+                        return new ListTile(
+                          leading: new Icon(
+                            menuItem["icon"],
+                            color: menuItem["color"],
                           ),
-                        ),
-                      );
-                    }).toList(),
+                          title: RaisedButton(
+                            //TODO: Personalizar los botones del menu
+                            color: Color(0xFF333333),
+                            splashColor: Color.fromRGBO(100, 230, 235, 100),
+                            padding: EdgeInsets.all(0),
+                            onPressed: () {
+                              switchUser(menuItem["title"]);
+                            },
+                            child: new Text(
+                              menuItem["title"],
+                              style: style
+                              
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
               )
