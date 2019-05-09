@@ -1,7 +1,10 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/rutas/login.dart';
 
 void main(){
+var apiKey = "<AIzaSyATAeozImwxIqJzXkT-B5STrawwylxUHdQ>";
   runApp(new MaterialApp(
     home: new LoginActivity(),
     title: "The Good Plate",
