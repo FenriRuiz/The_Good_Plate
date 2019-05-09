@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
+import 'package:the_good_plate/rutas/mapa.dart';
 
 //import 'start:math';
 class GuillotineMenu extends StatefulWidget {
@@ -19,18 +21,23 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   final List<Map> _menus = <Map>[
     {
       "icon": Icons.person,
-      "title": "profile",
+      "title": "Perfil",
       "color": Colors.white,
     },
     {
       "icon": Icons.view_agenda,
-      "title": "feed",
+      "title": "Restaurantes",
       "color": Colors.white,
     },
     {
-      "icon": Icons.swap_calls,
-      "title": "activity",
+      "icon": Icons.map,
+      "title": "Mapa",
       "color": Colors.cyan,
+    },
+    {
+      "icon": Icons.settings,
+      "title": "Ajustes",
+      "color": Colors.white,
     }
   ];
 
@@ -101,6 +108,14 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     }
   }
 
+  void switchUser(String opc) {
+    if (opc == "Perfil") {
+    } else if (opc == "Restaurantes") {
+    } else if (opc == "Mapa") {
+      Navigator.push(context, buildMaterialPageMaps());
+    } else if (opc == "Ajustes") {}
+  }
+
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -136,19 +151,6 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                         height: double.infinity,
                         child: new Opacity(
                           opacity: animationTitleFadeInOut.value,
-                          //TODO: Poner el buscador en condiciones
-                          
-                          child: TextField(
-                              controller: _controller,
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat', fontSize: 18.0),
-                              decoration: InputDecoration(
-                                  labelText: "Buscar...",
-                                  hintText: "Buscar...",
-                                  prefixIcon: Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(25.0))))),
                         ),
                       ),
                     )),
@@ -164,6 +166,20 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                   ),
                   onPressed: _playAnimation,
                 ),
+              ),
+              //!Buscador
+              Padding(
+                padding: const EdgeInsets.fromLTRB(65, 30, 10, 0),
+                child: TextField(
+                    controller: _controller,
+                    style: TextStyle(fontFamily: 'Montserrat', fontSize: 18.0),
+                    decoration: InputDecoration(
+                        labelText: "Buscar...",
+                        hintText: "Buscar...",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25.0))))),
               ),
               //*Contenido menu
               new Padding(
@@ -184,9 +200,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                           color: Color(0xFF333333),
                           splashColor: Color.fromRGBO(100, 230, 235, 100),
                           padding: EdgeInsets.all(0),
-                          onPressed: () {
-                            print('Button clicked');
-                          },
+                          onPressed: () {switchUser(menuItem["title"]);},
                           child: new Text(
                             menuItem["title"],
                             style: new TextStyle(
@@ -203,6 +217,11 @@ class _GuillotineMenuState extends State<GuillotineMenu>
         ),
       ),
     );
+  }
+
+  MaterialPageRoute buildMaterialPageMaps() {
+    return MaterialPageRoute(
+        builder: ((BuildContext context) => MapsActivity()));
   }
 }
 

@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/rutas/lista_restaurantes.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
-import 'package:the_good_plate/auxiliar/guillotine.dart';
 
 class RestaurantesRecomendados extends StatefulWidget {
   @override
