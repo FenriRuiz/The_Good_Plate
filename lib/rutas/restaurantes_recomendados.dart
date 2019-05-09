@@ -38,7 +38,7 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
     return Scaffold(
         body: Column(
           children: <Widget>[
-            Stack(
+            /*Stack(
               children: <Widget>[
                 Padding(
                     padding: const EdgeInsets.fromLTRB(10, 35, 10, 0),
@@ -67,7 +67,8 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
                                   BorderRadius.all(Radius.circular(25.0))))),
                 )
               ],
-            ),
+            ),*/
+            SizedBox(height: 60.0),
             Expanded(child: Scaffold(body: ListaRestaurantes()))
           ],
         ));

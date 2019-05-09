@@ -19,17 +19,17 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   final List<Map> _menus = <Map>[
     {
       "icon": Icons.person,
-      "title": "profile",
+      "title": "Perfil",
       "color": Colors.white,
     },
     {
-      "icon": Icons.view_agenda,
-      "title": "feed",
+      "icon": Icons.favorite,
+      "title": "Favoritos",
       "color": Colors.white,
     },
     {
-      "icon": Icons.swap_calls,
-      "title": "activity",
+      "icon": Icons.shopping_cart,
+      "title": "Pedidos",
       "color": Colors.cyan,
     }
   ];
@@ -42,7 +42,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 //Inicialización del controlador de la animacion
     animationControllerMenu = new AnimationController(
         duration: const Duration(
-          milliseconds: 1000,
+          milliseconds: 2000,
         ),
         vsync: this)
       ..addListener(() {});
@@ -51,8 +51,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     animationMenu =
         new Tween(begin: -pi / 2.0, end: 0.0).animate(new CurvedAnimation(
       parent: animationControllerMenu,
-      curve: Curves.bounceOut,
-      reverseCurve: Curves.bounceIn,
+      curve: Curves.fastLinearToSlowEaseIn,
+      reverseCurve: Curves.fastLinearToSlowEaseIn,
     ))
           ..addListener(() {
             setState(() {
@@ -110,7 +110,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
     return new Transform.rotate(
       angle: angle,
-      origin: new Offset(24.0, 56.0),
+      origin: new Offset(40.0, 56.0),
       alignment: Alignment.topLeft,
       child: Material(
         color: Colors.transparent,
@@ -121,11 +121,10 @@ class _GuillotineMenuState extends State<GuillotineMenu>
           child: new Stack(
             children: <Widget>[
               //*Titulo menu
-              new Positioned(
-                top: 32.0,
-                left: 40.0,
-                width: screenWidth,
-                height: 24.0,
+              new Positioned.fill(
+                top: 70.0,
+                left: 65.0,
+                
                 child: new Transform.rotate(
                     alignment: Alignment.topLeft,
                     origin: Offset.zero,
@@ -137,7 +136,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                         child: new Opacity(
                           opacity: animationTitleFadeInOut.value,
                           //TODO: Poner el buscador en condiciones
-                          
+
                           child: TextField(
                               controller: _controller,
                               style: TextStyle(
@@ -155,8 +154,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
               ),
               //*Icono Hamburguesa
               new Positioned(
-                top: 32.0,
-                left: 4.0,
+                top: 20.0,
+                left: 10.0,
                 child: new IconButton(
                   icon: const Icon(
                     Icons.menu,
