@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 import 'package:the_good_plate/rutas/mapa.dart';
+import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 
 //import 'start:math';
 class GuillotineMenu extends StatefulWidget {
   @override
   _GuillotineMenuState createState() => _GuillotineMenuState();
 }
+
+double _imageHeight = 256.0;
 
 class _GuillotineMenuState extends State<GuillotineMenu>
     with SingleTickerProviderStateMixin {
@@ -17,7 +19,6 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   _GuillotineAnimationStatus menuAnimationStatus;
   TextEditingController _controller = TextEditingController();
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
 
   double pi = 3.14;
 
@@ -136,83 +137,84 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     double angle = animationMenu.value;
 
     return new Transform.rotate(
-      angle: angle,
-      origin: new Offset(40.0, 56.0),
-      alignment: Alignment.topLeft,
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          width: screenWidth,
-          height: screenHeight,
-          color: Colors.grey[800],
-          child: new Stack(
-            children: <Widget>[
-              //*Titulo menu
-              new Positioned.fill(
-                top: 70.0,
-                left: 63.0,
-                child: new Transform.rotate(
-                    alignment: Alignment.topLeft,
-                    origin: Offset.zero,
-                    angle: pi / 2.0,
-                    child: new Center(
-                      child: new Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        child: new Opacity(
-                          opacity: animationTitleFadeInOut.value,
-                          //TODO: Poner el buscador en condiciones
-
-                          child: TextField(
-                              controller: _controller,
-                              style: TextStyle(
-                                  fontFamily: 'Montserrat', fontSize: 18.0),
-                              decoration: InputDecoration(
-                                  labelText: "Buscar...",
-                                  hintText: "Buscar...",
-                                  prefixIcon: Icon(Icons.search),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(30.0))))),
-                        ),
+        angle: angle,
+        origin: new Offset(40.0, 56.0),
+        alignment: Alignment.topLeft,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            width: screenWidth,
+            height: screenHeight,
+            color: Colors.grey[800],
+            child: new Stack(
+              children: <Widget>[
+                //*Contenido menu
+                new Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: new Opacity(
+                    opacity: animationTitleFadeIn.value,
+                    child: new Scaffold(
+                      body: new Stack(
+                        children: <Widget>[
+                          // FittedBox(child: _buildImage()),
+                          FittedBox(child: _buildImage(context)),
+                          FittedBox(child: _buildProfileRow()),
+                        ],
                       ),
-                    )),
-              ),
-              //*Icono Hamburguesa
-              new Positioned(
-                top: 20.0,
-                left: 10.0,
-                child: new IconButton(
-                  icon: const Icon(
-                    Icons.menu,
-                    color: Colors.white,
+                    ),
                   ),
-                  onPressed: _playAnimation,
                 ),
-              ),
-              //!Buscador
-              /*Padding(
-                padding: const EdgeInsets.fromLTRB(65, 30, 10, 0),
-                child: TextField(
-                    controller: _controller,
-                    style: TextStyle(fontFamily: 'Montserrat', fontSize: 18.0),
-                    decoration: InputDecoration(
-                        labelText: "Buscar...",
-                        hintText: "Buscar...",
-                        prefixIcon: Icon(Icons.search),
-                        border: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(25.0))))),
-              ),*/  
-              //*Contenido menu
-              new Padding(
-                padding: const EdgeInsets.only(left: 64.0, top: 96.0),
-                child: new Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child:new Opacity(
+                //*Titulo menu
+                new Positioned.fill(
+                  top: 70.0,
+                  left: 63.0,
+                  child: new Transform.rotate(
+                      alignment: Alignment.topLeft,
+                      origin: Offset.zero,
+                      angle: pi / 2.0,
+                      child: new Center(
+                        child: new Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: new Opacity(
+                            opacity: animationTitleFadeInOut.value,
+                            //TODO: Poner el buscador en condiciones
+
+                            child: TextField(
+                                controller: _controller,
+                                style: TextStyle(
+                                    fontFamily: 'Montserrat', fontSize: 18.0),
+                                decoration: InputDecoration(
+                                    labelText: "Buscar...",
+                                    hintText: "Buscar...",
+                                    prefixIcon: Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(30.0))))),
+                          ),
+                        ),
+                      )),
+                ),
+
+                //*Icono Hamburguesa
+                new Positioned(
+                  top: 20.0,
+                  left: 10.0,
+                  child: new IconButton(
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                    onPressed: _playAnimation,
+                  ),
+                ),
+
+                new Padding(
+                  padding: EdgeInsets.only(top: _imageHeight),
+                  child: new Opacity(
                     opacity: animationTitleFadeIn.value,
                     child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: _menus.map((menuItem) {
                         return new ListTile(
@@ -221,36 +223,78 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                             color: menuItem["color"],
                           ),
                           title: RaisedButton(
-                            //TODO: Personalizar los botones del menu
                             color: Color(0xFF333333),
                             splashColor: Color.fromRGBO(100, 230, 235, 100),
                             padding: EdgeInsets.all(0),
                             onPressed: () {
                               switchUser(menuItem["title"]);
                             },
-                            child: new Text(
-                              menuItem["title"],
-                              style: style
-                              
-                            ),
+                            child: new Text(menuItem["title"], style: style),
                           ),
                         );
                       }).toList(),
                     ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   MaterialPageRoute buildMaterialPageMaps() {
     return MaterialPageRoute(
         builder: ((BuildContext context) => MapsActivity()));
   }
+}
+
+Widget _buildBottomPart() {
+  return new Padding(
+    padding: new EdgeInsets.only(top: _imageHeight),
+  );
+}
+
+Widget _buildImage(context) {
+  MediaQueryData mediaQueryData = MediaQuery.of(context);
+  return new ClipPath(
+    clipper: new DiagonalClipper(),
+    child: new Image.network(
+      "https://i.imgur.com/hbGXLre.jpg",
+      fit: BoxFit.fitHeight,
+      height: _imageHeight,
+      width: mediaQueryData.size.width,
+      colorBlendMode: BlendMode.srcOver,
+      color: new Color.fromARGB(120, 20, 10, 40),
+    ),
+  );
+}
+
+Widget _buildProfileRow() {
+  return new Padding(
+      padding: const EdgeInsets.only(left: 64.0, top: 256.0 / 2.5),
+      child: new Row(children: <Widget>[
+        new CircleAvatar(
+          minRadius: 28.0,
+          maxRadius: 28.0,
+          backgroundImage: new AssetImage('images/Avatar.jpg'),
+        ),
+        new Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              new Text(
+                'Ana Pantoja',
+                style: new TextStyle(
+                    fontSize: 26.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400),
+              ),
+            ],
+          ),
+        )
+      ]));
 }
 
 enum _GuillotineAnimationStatus { closed, open, animating }

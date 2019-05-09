@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 import 'GuillotinaMenu.dart';
+import 'package:the_good_plate/rutas/mapa.dart';
+
 
 class Guillotine extends StatefulWidget{
   @override
