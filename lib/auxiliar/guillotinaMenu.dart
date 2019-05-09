@@ -144,13 +144,13 @@ class _GuillotineMenuState extends State<GuillotineMenu>
         child: Container(
           width: screenWidth,
           height: screenHeight,
-          color: Color(0xFF333333),
+          color: Colors.grey[800],
           child: new Stack(
             children: <Widget>[
               //*Titulo menu
               new Positioned.fill(
                 top: 70.0,
-                left: 66.0,
+                left: 63.0,
                 child: new Transform.rotate(
                     alignment: Alignment.topLeft,
                     origin: Offset.zero,
@@ -173,7 +173,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                                   prefixIcon: Icon(Icons.search),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.all(
-                                          Radius.circular(25.0))))),
+                                          Radius.circular(30.0))))),
                         ),
                       ),
                     )),
