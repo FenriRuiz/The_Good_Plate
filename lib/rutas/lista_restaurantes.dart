@@ -4,6 +4,7 @@ import 'package:the_good_plate/vistas/item_restaurantes.dart';
 class ListaRestaurantes extends StatefulWidget{
   @override
   _ListaRestaurantesState createState() => _ListaRestaurantesState();
+  
 }
 
 class _ListaRestaurantesState extends State<ListaRestaurantes>{
@@ -11,7 +12,7 @@ class _ListaRestaurantesState extends State<ListaRestaurantes>{
   void initState(){
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context){
     return new ListView.builder(

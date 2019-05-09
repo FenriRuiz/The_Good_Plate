@@ -21,7 +21,11 @@ class ItemRestaurante extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: Hero(
-                        child: Image.network(_restaurante.imagen),
+                        child: FadeInImage.assetNetwork(
+                          
+                          placeholder: 'images/LogoWhite.png',
+                          image: _restaurante.imagen,
+                        ),
                         tag: _restaurante.imagen,
                       ),
                     ),
