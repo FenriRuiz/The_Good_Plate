@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/rutas/mapa.dart';
 import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:the_good_plate/rutas/perfil.dart';
 
-//import 'start:math';
 class GuillotineMenu extends StatefulWidget {
   @override
   _GuillotineMenuState createState() => _GuillotineMenuState();
@@ -24,8 +25,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   final List<Map> _menus = <Map>[
     {
-      "icon": Icons.person,
-      "title": "Perfil",
+      "icon": Icons.add_shopping_cart,
+      "title": "Pedidos",
       "color": Colors.white,
     },
     {
@@ -122,11 +123,15 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   }
 
   void switchUser(String opc) {
-    if (opc == "Perfil") {
-    } else if (opc == "Restaurantes") {
+    if (opc == "Pedidos") {
+      Fluttertoast.showToast(msg: "No disponible ");
+    } else if (opc == "Favoritos") {
+      Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
       Navigator.push(context, buildMaterialPageMaps());
-    } else if (opc == "Ajustes") {}
+    } else if (opc == "Ajustes de cuenta") {
+      Navigator.push(context, buildMaterialPagePerfil());
+    }
   }
 
   @override
@@ -246,12 +251,10 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     return MaterialPageRoute(
         builder: ((BuildContext context) => MapsActivity()));
   }
-}
-
-Widget _buildBottomPart() {
-  return new Padding(
-    padding: new EdgeInsets.only(top: _imageHeight),
-  );
+  MaterialPageRoute buildMaterialPagePerfil() {
+    return MaterialPageRoute(
+        builder: ((BuildContext context) => PerfilActivity()));
+  }
 }
 
 Widget _buildImage(context) {
@@ -276,7 +279,7 @@ Widget _buildProfileRow() {
         new CircleAvatar(
           minRadius: 28.0,
           maxRadius: 28.0,
-          backgroundImage: new AssetImage('images/Avatar.jpg'),
+          backgroundImage: new AssetImage('images/avatar.jpg'),
         ),
         new Padding(
           padding: const EdgeInsets.only(left: 16.0),
