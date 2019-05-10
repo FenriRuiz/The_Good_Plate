@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 import 'package:the_good_plate/rutas/lista_platos.dart';
 import 'package:the_good_plate/vistas/item_restaurantes.dart';
+import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+
 
 class Restaurante extends StatefulWidget {
   final ModeloRestaurante _restaurante;
@@ -32,7 +34,8 @@ class _RestauranteState extends State<Restaurante> {
             }));
           },
         )),
-        Expanded(child: Scaffold(body: ListaPlatos()))
+        Expanded(child: Scaffold(body: ListaPlatos())),
+        new GuillotineMenu(),
       ],
     ));
   }

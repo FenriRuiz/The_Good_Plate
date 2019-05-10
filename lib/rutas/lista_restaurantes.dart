@@ -17,7 +17,8 @@ class _ListaRestaurantesState extends State<ListaRestaurantes>{
   Widget build(BuildContext context){
     return new ListView.builder(
       itemCount: restaurantes.length,
-      itemBuilder: (context, int item) => new ItemRestaurante(restaurantes[item])
+      itemBuilder: (context, int item) =>
+       new ItemRestaurante(restaurantes[item])
     );
   }
 }

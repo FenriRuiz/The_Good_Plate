@@ -19,7 +19,8 @@ class _ListaPlatosState extends State<ListaPlatos>{
   Widget build(BuildContext context){
     return new ListView.builder(
       itemCount: platos.length,
-      itemBuilder: (context, int item) => new ItemPlato(platos[item])
+      itemBuilder: (context, int item) => 
+      new ItemPlato(platos[item])
     );
   }
 }

@@ -3,9 +3,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+
 
 
 class MapsActivity extends StatefulWidget {
+  static const nombreRuta= "/mapas";
+  
   @override
   _MapsActivityState createState() => new _MapsActivityState();
 }
@@ -32,12 +36,6 @@ class _MapsActivityState extends State<MapsActivity> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Google map widget',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -64,7 +62,9 @@ class _MapsActivityState extends State<MapsActivity> {
               ),
             ),
           ),
+                  new GuillotineMenu(),
         ],
+
       ),
     );
   }

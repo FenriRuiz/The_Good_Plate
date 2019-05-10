@@ -3,6 +3,7 @@ import 'package:the_good_plate/rutas/mapa.dart';
 import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:the_good_plate/rutas/perfil.dart';
+import 'package:the_good_plate/rutas/pedidos.dart';
 
 class GuillotineMenu extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   _GuillotineAnimationStatus menuAnimationStatus;
   TextEditingController _controller = TextEditingController();
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  bool activo = true;
 
   double pi = 3.14;
 
@@ -114,8 +116,10 @@ class _GuillotineMenuState extends State<GuillotineMenu>
         //*Durante la animaciion, no hacer nada
       } else if (menuAnimationStatus == _GuillotineAnimationStatus.closed) {
         animationControllerMenu.forward().orCancel;
+        activo = false;
       } else {
         animationControllerMenu.reverse().orCancel;
+        activo = true;
       }
     } on TickerCanceled {
       //*La animacion es canccelada
@@ -124,7 +128,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   void switchUser(String opc) {
     if (opc == "Pedidos") {
-      Fluttertoast.showToast(msg: "No disponible ");
+     // Fluttertoast.showToast(msg: "No disponible ");
+    Navigator.push(context, buildMaterialPagePedido());
     } else if (opc == "Favoritos") {
       Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
@@ -183,9 +188,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                           height: double.infinity,
                           child: new Opacity(
                             opacity: animationTitleFadeInOut.value,
-                            //TODO: Poner el buscador en condiciones
-
                             child: TextField(
+                                enabled: activo,
                                 controller: _controller,
                                 style: TextStyle(
                                     fontFamily: 'Montserrat', fontSize: 18.0),
@@ -233,6 +237,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                             padding: EdgeInsets.all(0),
                             onPressed: () {
                               switchUser(menuItem["title"]);
+                              _playAnimation();
                             },
                             child: new Text(menuItem["title"], style: style),
                           ),
@@ -246,11 +251,15 @@ class _GuillotineMenuState extends State<GuillotineMenu>
           ),
         ));
   }
-
+  MaterialPageRoute buildMaterialPagePedido() {
+    return MaterialPageRoute(
+        builder: ((BuildContext context) => PedidosActivity()));
+  }
   MaterialPageRoute buildMaterialPageMaps() {
     return MaterialPageRoute(
         builder: ((BuildContext context) => MapsActivity()));
   }
+
   MaterialPageRoute buildMaterialPagePerfil() {
     return MaterialPageRoute(
         builder: ((BuildContext context) => PerfilActivity()));

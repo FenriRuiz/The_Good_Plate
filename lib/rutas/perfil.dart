@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
 
 class PerfilActivity extends StatefulWidget {
+  static const nombreRuta = "/perfil";
+
   @override
   _PerfilActivityState createState() => new _PerfilActivityState();
 }
@@ -29,7 +32,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
                         padding: EdgeInsets.all(16.0),
                         margin: EdgeInsets.only(top: 16.0),
                         decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Color.fromRGBO(60, 190, 200, 100),
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +105,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: Color.fromRGBO(60, 190, 200, 100),
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                     child: Column(
@@ -121,7 +124,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
                           subtitle: Text("622 547 840"),
                           leading: Icon(Icons.phone),
                         ),
-                                                ListTile(
+                        ListTile(
                           title: Text("Teléfono"),
                           subtitle: Text("622 547 840"),
                           leading: Icon(Icons.phone),
@@ -131,9 +134,10 @@ class _PerfilActivityState extends State<PerfilActivity> {
                           subtitle: Text("15 febrero 2019"),
                           leading: Icon(Icons.calendar_view_day),
                         ),
-                           ListTile(
+                        ListTile(
                           title: Text("Informacion"),
-                          subtitle: Text("Holiwi que tal yo bien adlfkdhfkjasdfhlksjdfhlkjsdfhlakjsdfhlkajdsfhlakjdfhlakjsdhflkadjhflakjhdlkfajhdlkjfhalksdhfalksdhfa"),
+                          subtitle: Text(
+                              "Me gusta la comida Americana y los bares con buenas tapas"),
                           leading: Icon(Icons.calendar_view_day),
                         ),
                       ],
@@ -142,10 +146,10 @@ class _PerfilActivityState extends State<PerfilActivity> {
                 ],
               ),
             ),
+            new GuillotineMenu()
           ],
         ),
       ),
     );
   }
-
 }
