@@ -59,7 +59,6 @@ class _PedidosActivityState extends State<PedidosActivity> {
         ));
       }
     }
-  }
 
   MaterialPageRoute buildMaterialPageRouteConfirmarPedido() {
     return MaterialPageRoute(

@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ConfirmarPedido extends StatelessWidget{
+class ConfirmarPedido extends StatefulWidget{
   final String direccion = "C/ San Miguel, 24, Ciudad Real";
   final String telefono = "622 548 103";
   final double total = 11.5;
   final double entrega = 1;
 
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-     body: _buildBody(context),
-    );
-  }
 
   Widget _buildBody(BuildContext context){
     return SingleChildScrollView(
@@ -112,4 +106,16 @@ class ConfirmarPedido extends StatelessWidget{
             ],
           ));
   }
+  @override
+  State<StatefulWidget> createState() {
+     @override
+  Widget build(BuildContext context){
+    return Scaffold(
+     body: _buildBody(context),
+    );
+  }
+
+  }
+
+ 
 }

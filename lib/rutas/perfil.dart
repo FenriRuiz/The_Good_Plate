@@ -15,7 +15,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.grey.shade700,
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
