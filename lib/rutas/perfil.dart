@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+import 'package:the_good_plate/rutas/confirmar_pedido.dart';
+
 
 class PerfilActivity extends StatefulWidget {
   static const nombreRuta = "/perfil";
@@ -152,4 +154,5 @@ class _PerfilActivityState extends State<PerfilActivity> {
       ),
     );
   }
+
 }
