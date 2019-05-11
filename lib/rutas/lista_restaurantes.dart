@@ -18,7 +18,7 @@ class _ListaRestaurantesState extends State<ListaRestaurantes>{
     return new ListView.builder(
       itemCount: restaurantes.length,
       itemBuilder: (context, int item) =>
-       new ItemRestaurante(restaurantes[item])
+       new ItemRestaurante(/*restaurantes[item]*/)
     );
   }
 }

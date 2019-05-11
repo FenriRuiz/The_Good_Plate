@@ -3,12 +3,14 @@ import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 import 'package:the_good_plate/rutas/restaurante.dart';
 
 class ItemRestaurante extends StatefulWidget {
-  final ModeloRestaurante _restaurante;
-  ItemRestaurante(this._restaurante);
+  ItemRestauranteState createState() => new ItemRestauranteState();
+}
+class ItemRestauranteState extends State<ItemRestaurante>{
+  ModeloRestaurante _restaurante;
+  //ItemRestaurante(this._restaurante);
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
-  @override
-  State<StatefulWidget> createState() {
+//TODO: Falta el body
+ @override
     Widget build(BuildContext context) {
       return new InkWell(
           onTap: () => Navigator.push(
@@ -69,4 +71,3 @@ class ItemRestaurante extends StatefulWidget {
               )));
     }
   }
-}

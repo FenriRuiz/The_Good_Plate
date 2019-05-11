@@ -11,7 +11,6 @@ class RestaurantesRecomendados extends StatefulWidget {
 class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
   List<ModeloRestaurante> restaurantesrecomendados;
 
-  TextEditingController _controller = TextEditingController();
   final globalKey = new GlobalKey<ScaffoldState>();
 
   bool _isSearching;

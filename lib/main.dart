@@ -1,10 +1,6 @@
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/rutas/login.dart';
-import 'package:the_good_plate/rutas/perfil.dart';
-
-import 'auxiliar/GuillotinaMenu.dart';
 
 void main() {
   runApp(new MaterialApp(
