@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/gtypography.dart';
 
 class ListaPedidos extends StatelessWidget {
-  
   const ListaPedidos({
     Key key,
     @required this.nombre,
@@ -16,11 +15,11 @@ class ListaPedidos extends StatelessWidget {
   final String image;
   final double price;
 
-
   @override
+  
   Widget build(BuildContext context) {
     return Card(
-      color:Color.fromRGBO(60, 190, 200, 100),
+      color: Color.fromRGBO(60, 190, 200, 100),
       elevation: 8.0,
       child: ListTile(
         leading: Container(
@@ -32,13 +31,12 @@ class ListaPedidos extends StatelessWidget {
         title: Container(
           height: 120.0,
           child: Column(
-            
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new GroceryTitle(text: nombre),
               new GrocerySubtitle(text: descripcion),
-              ],
+            ],
           ),
         ),
         trailing: Column(
@@ -60,6 +58,7 @@ class ListaPedidos extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }

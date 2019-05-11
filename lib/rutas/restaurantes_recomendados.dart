@@ -12,7 +12,6 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados>
 with SingleTickerProviderStateMixin {
   List<ModeloRestaurante> restaurantesrecomendados;
 
-  TextEditingController _controller = TextEditingController();
   final globalKey = new GlobalKey<ScaffoldState>();
 
   bool _isSearching;

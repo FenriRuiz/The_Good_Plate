@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
-import 'package:the_good_plate/rutas/confirmar_pedido.dart';
-
 
 class PerfilActivity extends StatefulWidget {
   static const nombreRuta = "/perfil";
@@ -15,7 +13,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Colors.grey.shade700,
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[

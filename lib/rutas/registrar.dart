@@ -122,12 +122,11 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
                   ),
                   SizedBox(height: 25.0),
                   registrarBtn
-                ],
+                     ],),
               ),
             ),
           ),
         ),
-      ),
     );
   }
 

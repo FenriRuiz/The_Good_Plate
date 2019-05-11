@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_pedidos.dart';
-import 'package:the_good_plate/rutas/pedidos.dart';
 import 'package:the_good_plate/auxiliar/gtypography.dart';
 
 class ItemPedido extends StatelessWidget{
@@ -38,7 +37,7 @@ class ItemPedido extends StatelessWidget{
                 color: Colors.grey[800],
                 onPressed: () {}),
             Text(
-              "1",
+              "3",
               textAlign: TextAlign.right,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),

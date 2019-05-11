@@ -1,10 +1,15 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 
-class ItemPlato extends StatelessWidget {
-  final ModeloPlato _plato;
-  ItemPlato(this._plato);
+class ItemPlato extends StatefulWidget {
+  @override
+  ItemPlatoState createState() => new ItemPlatoState();
+}
+
+class ItemPlatoState extends State<ItemPlato> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  ModeloPlato _plato = new ModeloPlato();
+ //ItemPlato(_plato);
 
   Widget build(BuildContext context) {
     return new InkWell(

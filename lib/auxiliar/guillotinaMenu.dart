@@ -45,6 +45,16 @@ class _GuillotineMenuState extends State<GuillotineMenu>
       "icon": Icons.settings,
       "title": "Ajustes de cuenta",
       "color": Colors.white,
+    },
+    {
+      "icon": Icons.account_circle,
+      "title": "Cerrar Sesión",
+      "color": Colors.white,
+    },
+    {
+      "icon": Icons.mode_comment,
+      "title": "Sugerencias",
+      "color": Colors.white,
     }
   ];
 
@@ -128,8 +138,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   void switchUser(String opc) {
     if (opc == "Pedidos") {
-     // Fluttertoast.showToast(msg: "No disponible ");
-    Navigator.push(context, buildMaterialPagePedido());
+      // Fluttertoast.showToast(msg: "No disponible ");
+      Navigator.push(context, buildMaterialPagePedido());
     } else if (opc == "Favoritos") {
       Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
@@ -251,10 +261,12 @@ class _GuillotineMenuState extends State<GuillotineMenu>
           ),
         ));
   }
+
   MaterialPageRoute buildMaterialPagePedido() {
     return MaterialPageRoute(
         builder: ((BuildContext context) => PedidosActivity()));
   }
+
   MaterialPageRoute buildMaterialPageMaps() {
     return MaterialPageRoute(
         builder: ((BuildContext context) => MapsActivity()));
