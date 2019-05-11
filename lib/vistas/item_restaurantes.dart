@@ -23,7 +23,7 @@ class ItemRestaurante extends StatelessWidget {
                       child: Hero(
                         child: FadeInImage.assetNetwork(
                           
-                          placeholder: 'images/LogoWhite.png',
+                          placeholder: 'images/loading.gif',
                           image: _restaurante.imagen,
                         ),
                         tag: _restaurante.imagen,

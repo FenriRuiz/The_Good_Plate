@@ -8,7 +8,8 @@ class RestaurantesRecomendados extends StatefulWidget {
       new _RestaurantesRecomendadosState();
 }
 
-class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
+class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados>
+with SingleTickerProviderStateMixin {
   List<ModeloRestaurante> restaurantesrecomendados;
 
   TextEditingController _controller = TextEditingController();
@@ -30,7 +31,7 @@ class _RestaurantesRecomendadosState extends State<RestaurantesRecomendados> {
         body: Column(
           children: <Widget>[
             SizedBox(height: 80.0),
-            Expanded(child: Scaffold(body: ListaRestaurantes()))
+            Expanded(child: ListaRestaurantes())
           ],
         ));
   }

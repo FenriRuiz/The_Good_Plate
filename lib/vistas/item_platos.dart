@@ -6,23 +6,22 @@ class ItemPlato extends StatelessWidget {
   ItemPlato(this._plato);
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
-  Widget build (BuildContext context){
-        return new InkWell(
-          //onTap: (),
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Card(
-                  color: Color.fromRGBO(60, 190, 200, 100),
-                  child: new Column(
-                    children: <Widget>[
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-                          //child: Hero(
-                            child: Image.network(_plato.imagen),
-                      //  tag: _restaurante.imagen,
-                      //),
+  Widget build(BuildContext context) {
+    return new InkWell(
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: Card(
+              color: Color.fromRGBO(60, 190, 200, 100),
+              child: new Column(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      child: FadeInImage.assetNetwork(
+                        placeholder: 'images/loading.gif',
+                        image: _plato.imagen,
+                      ),
                     ),
                   ),
                   new Container(
@@ -34,7 +33,7 @@ class ItemPlato extends StatelessWidget {
                     ),
                   ),
                   new Container(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5), 
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
                       _plato.ingredientes,
                       style:
@@ -44,14 +43,11 @@ class ItemPlato extends StatelessWidget {
                   ),
                   new Padding(
                       padding: new EdgeInsets.all(7.0),
-
                       child: new Row(
-
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          
-                          new Icon(Icons.favorite_border,size: 40.0, color: Colors.redAccent),
-                          
+                          new Icon(Icons.favorite_border,
+                              size: 40.0, color: Colors.redAccent),
                         ],
                       ))
                 ],
