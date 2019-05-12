@@ -12,9 +12,13 @@ class ItemRestaurante extends StatefulWidget {
 
 class _ItemRestauranteState extends State<ItemRestaurante> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
+  
   _ItemRestauranteState(ModeloRestaurante _restaurante);
 
+  bool _meGusta = true;
+  bool _promocionado = true;
+
+  @override
   Widget build(BuildContext context) {
     return new InkWell(
       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(widget._restaurante,))),
@@ -63,13 +67,42 @@ class _ItemRestauranteState extends State<ItemRestaurante> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           
-                          new Icon(Icons.star_border, size: 40.0, color: Colors.amberAccent),
-                          new Icon(Icons.favorite_border,size: 40.0, color: Colors.redAccent),
-                          
+                          IconButton(
+                            icon: (widget._restaurante.patrocinado
+                                ? Icon(Icons.star_border)
+                                : Icon(Icons.star)),
+                            color: Colors.red,
+                            iconSize: 40,
+                            onPressed: _buildCambiarOpinion()),
+                          IconButton(
+                          icon: (widget._restaurante.meGusta
+                              ? Icon(Icons.favorite_border)
+                              : Icon(Icons.favorite)),
+                          color: Colors.redAccent,
+                          iconSize: 40,
+                          onPressed: _buildCambiarPromocionado())
                         ],
                       ))
                 ],
               ),
             )));
+  }
+  _buildCambiarOpinion() {
+    setState(() {
+      if (_meGusta) {
+        _meGusta = false;
+      } else {
+        _meGusta = true;
+      }
+    });
+  }
+  _buildCambiarPromocionado() {
+    setState(() {
+      if (_promocionado) {
+        _promocionado = false;
+      } else {
+        _promocionado = true;
+      }
+    });
   }
 }

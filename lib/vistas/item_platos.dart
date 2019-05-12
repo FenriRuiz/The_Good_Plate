@@ -2,15 +2,29 @@ import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 
 class ItemPlato extends StatefulWidget {
+  final ModeloPlato _plato;
+  ItemPlato(this._plato);
+
   @override
-  ItemPlatoState createState() => new ItemPlatoState();
+  ItemPlatoState createState() => new ItemPlatoState(_plato);
 }
 
 class ItemPlatoState extends State<ItemPlato> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  ModeloPlato _plato = new ModeloPlato();
- //ItemPlato(_plato);
+  bool _isFavorite = true;
 
+  _buildCambiarOpinion() {
+    setState(() {
+      if (_isFavorite) {
+        _isFavorite = false;
+      } else {
+        _isFavorite = true;
+      }
+    });
+  }
+
+  ItemPlatoState(ModeloPlato _plato);
+  @override
   Widget build(BuildContext context) {
     return new InkWell(
         child: ClipRRect(
@@ -25,14 +39,14 @@ class ItemPlatoState extends State<ItemPlato> {
                       padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: FadeInImage.assetNetwork(
                         placeholder: 'images/loading.gif',
-                        image: _plato.imagen,
+                        image: widget._plato.imagen,
                       ),
                     ),
                   ),
                   new Container(
                     padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
                     child: Text(
-                      _plato.nombre,
+                      widget._plato.nombre,
                       style: style,
                       softWrap: true,
                     ),
@@ -40,7 +54,7 @@ class ItemPlatoState extends State<ItemPlato> {
                   new Container(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: Text(
-                      _plato.ingredientes,
+                      widget._plato.ingredientes,
                       style:
                           TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
                       softWrap: true,
@@ -51,8 +65,13 @@ class ItemPlatoState extends State<ItemPlato> {
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          new Icon(Icons.favorite_border,
-                              size: 40.0, color: Colors.redAccent),
+                          IconButton(
+                            icon: (_isFavorite
+                                ? Icon(Icons.favorite_border)
+                                : Icon(Icons.favorite)),
+                            color: Colors.redAccent,
+                            onPressed: _buildCambiarOpinion(),
+                          )
                         ],
                       ))
                 ],

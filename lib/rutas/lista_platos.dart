@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_platos.dart';
-
 import 'package:the_good_plate/vistas/item_platos.dart';
 
 class ListaPlatos extends StatefulWidget{
@@ -19,8 +18,7 @@ class _ListaPlatosState extends State<ListaPlatos>{
   Widget build(BuildContext context){
     return new ListView.builder(
       itemCount: platos.length,
-      itemBuilder: (context, int item) => 
-      new ItemPlato()
+      itemBuilder: (context, int item) => new ItemPlato(platos[item])
     );
   }
 }
