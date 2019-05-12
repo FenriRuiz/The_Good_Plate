@@ -13,3 +13,21 @@ class OvalTopBorderClipper extends CustomClipper<Rect> {
   }
 
 }
+class MultipleRoundedCurverClipper extends CustomClipper<Path>{
+  @override
+  Path getClip(Size size){
+    Path path = Path();
+    path.lineTo(0, size.height);
+    var curXpos = 0.0;
+    var curYPos = size.height;
+    var incremento = size.width/20;
+    while (curXpos < size.width){
+      curXpos += incremento;
+      path.arcToPoint(Offset(curXpos, curYPos), radius: Radius.circular(5));
+    }
+    path.lineTo(size.width, 0);
+    return path;
+  }
+  @override
+  bool shouldReclip (CustomClipper<Path> oldClipper)=> false;
+}

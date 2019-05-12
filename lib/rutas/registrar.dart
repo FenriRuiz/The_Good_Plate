@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/auxiliar/camara.dart';
 
 class RegistrarActivity extends StatefulWidget {
   @override
@@ -45,6 +46,18 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
 
   @override
   Widget build(BuildContext context) {
+    final avatar =
+        Image.asset('images/avatar.jpg', width: 150.0, height: 200.0);
+    final btnAvatar = Material(
+        elevation: 2,
+        shape: CircleBorder(),
+        color: Color.fromRGBO(60, 190, 200, 100),
+        child: MaterialButton(
+          onPressed: () {
+            CogerImagen();
+          },
+          child: Icon(Icons.photo_library),
+        ));
     final usuarioField = TextField(
       obscureText: false,
       style: style,
@@ -98,11 +111,25 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
         child: Container(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(60.0),
+              padding: const EdgeInsets.all(30.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  new Row(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 25.0,
+                      ),
+                      avatar,
+                      SizedBox(
+                        height: 25.0,
+                        width: 20.0,
+                      ),
+                      
+                      btnAvatar,
+                    ],
+                  ),
                   SizedBox(height: 25.0),
                   usuarioField,
                   SizedBox(height: 25.0),
@@ -110,23 +137,15 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
                   SizedBox(height: 25.0),
                   passwordField,
                   SizedBox(height: 25.0),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
-                    width: MediaQuery.of(context).size.width,
-                    child: DropdownButtonHideUnderline(child: edadField),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 1.2, color: Color.fromRGBO(150, 150, 150, 70)),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
-                  ),
+                  _buildEdad(edadField),
                   SizedBox(height: 25.0),
                   registrarBtn
-                     ],),
+                ],
               ),
             ),
           ),
         ),
+      ),
     );
   }
 
@@ -134,5 +153,18 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
     setState(() {
       _currentEdad = selectedEdad;
     });
+  }
+
+  _buildEdad(edadField) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
+      width: MediaQuery.of(context).size.width,
+      child: DropdownButtonHideUnderline(child: edadField),
+      decoration: BoxDecoration(
+        border:
+            Border.all(width: 1.2, color: Color.fromRGBO(150, 150, 150, 70)),
+        borderRadius: BorderRadius.all(Radius.circular(32.0)),
+      ),
+    );
   }
 }

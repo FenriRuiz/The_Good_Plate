@@ -65,8 +65,8 @@ MaterialPageRoute buildMaterialPageRouteConfirmarPedido() {
 }
 
 Widget _buildTotals(BuildContext context) {
-  return ClipOval(
-    clipper: OvalTopBorderClipper(),
+  return ClipPath(
+    clipper: MultipleRoundedCurverClipper(),
     child: Container(
       height: 180,
       decoration: BoxDecoration(
