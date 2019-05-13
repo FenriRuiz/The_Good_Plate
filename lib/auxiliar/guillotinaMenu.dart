@@ -4,6 +4,7 @@ import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:the_good_plate/rutas/perfil.dart';
 import 'package:the_good_plate/rutas/pedidos.dart';
+import 'package:the_good_plate/rutas/login.dart';
 
 class GuillotineMenu extends StatefulWidget {
   @override
@@ -43,7 +44,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
     },
     {
       "icon": Icons.settings,
-      "title": "Ajustes de cuenta",
+      "title": "Perfil",
       "color": Colors.white,
     },
     {
@@ -144,8 +145,10 @@ class _GuillotineMenuState extends State<GuillotineMenu>
       Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
       Navigator.push(context, buildMaterialPageMaps());
-    } else if (opc == "Ajustes de cuenta") {
+    } else if (opc == "Perfil") {
       Navigator.push(context, buildMaterialPagePerfil());
+    } else if (opc == "Cerrar Sesión") {
+      canPop(context);
     }
   }
 
@@ -278,6 +281,11 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   }
 }
 
+MaterialPageRoute buildMaterialPageLogin() {
+  return MaterialPageRoute(
+      builder: ((BuildContext context) => LoginActivity()));
+}
+
 Widget _buildImage(context) {
   MediaQueryData mediaQueryData = MediaQuery.of(context);
   return new ClipPath(
@@ -319,6 +327,12 @@ Widget _buildProfileRow() {
           ),
         )
       ]));
+}
+
+canPop(BuildContext context) {
+  while(Navigator.of(context).canPop()) {
+    Navigator.of(context).pop();
+  }
 }
 
 enum _GuillotineAnimationStatus { closed, open, animating }

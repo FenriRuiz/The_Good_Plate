@@ -26,8 +26,8 @@ class _AnimatedFabState extends State<AnimatedFab>
     _animationController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 200));
     _colorAnimation = new ColorTween(
-            begin: Color.fromRGBO(200, 69, 59, 100),
-            end: Color.fromRGBO(127, 42, 36, 100))
+            begin: Color.fromRGBO(157,107,232,100),
+            end: Color.fromRGBO(157,107,232,100))
         .animate(_animationController);
   }
 
@@ -104,7 +104,7 @@ class _AnimatedFabState extends State<AnimatedFab>
       height: size,
       width: size,
       decoration: new BoxDecoration(
-          shape: BoxShape.circle, color: Color.fromRGBO(200, 69, 59, 100)),
+          shape: BoxShape.circle, color: Color.fromRGBO(157,107,232,100)),
     );
   }
 

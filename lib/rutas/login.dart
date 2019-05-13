@@ -13,6 +13,7 @@ class _LoginActivityState extends State<LoginActivity> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   @override
   Widget build(BuildContext context) {
+    
     final userField = TextField(
       obscureText: false,
       style: style,
@@ -73,7 +74,10 @@ class _LoginActivityState extends State<LoginActivity> {
             child: WaveWidget(
               config: CustomConfig(
                 gradients: [
-                  [Color.fromRGBO(60, 190, 200, 100), Color.fromRGBO(20, 117, 123, 100)],
+                  [
+                    Color.fromRGBO(60, 190, 200, 100),
+                    Color.fromRGBO(20, 117, 123, 100)
+                  ],
                   [Color.fromRGBO(20, 117, 123, 100), Colors.cyan.shade200],
                 ],
                 durations: [19440, 10800],
@@ -117,7 +121,7 @@ class _LoginActivityState extends State<LoginActivity> {
                           new Image.asset('images/googleplus.png'),
                           new Image.asset('images/twitter.png')
                         ],
-                      ))
+                      )),
                 ],
               ),
             ),
@@ -135,4 +139,5 @@ class _LoginActivityState extends State<LoginActivity> {
     return MaterialPageRoute(
         builder: ((BuildContext context) => RegistrarActivity()));
   }
+
 }
