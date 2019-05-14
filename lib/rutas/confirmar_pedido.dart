@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+import 'package:the_good_plate/auxiliar/beautiful_alert_dialog.dart';
 
 class ConfirmarPedido extends StatefulWidget {
   ConfirmarPedidoState createState() => new ConfirmarPedidoState();
@@ -105,14 +106,14 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
             RadioListTile(
               groupValue: true,
               value: true,
-              title: Text("Efectivo"),
+              title: Text("Tarjeta de crédito/débito"),
               onChanged: (value) {},
             ),
             Container(
               width: double.infinity,
               child: RaisedButton(
                 color: Theme.of(context).primaryColor,
-                onPressed: () => {},
+                onPressed: () => {_alertDialog(context)},
                 child: Text(
                   "Confirmar pedido",
                   style: TextStyle(color: Colors.white),
@@ -134,5 +135,14 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
                 GuillotineMenu(),
               ],
             )));
+  }
+
+  _alertDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return BeautifulAlertDialog();
+      }
+    );
   }
 }

@@ -46,18 +46,6 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
 
   @override
   Widget build(BuildContext context) {
-    final avatar =
-        Image.asset('images/avatar.jpg', width: 150.0, height: 200.0);
-    final btnAvatar = Material(
-        elevation: 2,
-        shape: CircleBorder(),
-        color: Color.fromRGBO(60, 190, 200, 100),
-        child: MaterialButton(
-          onPressed: () {
-            CogerImagen();
-          },
-          child: Icon(Icons.photo_library),
-        ));
     final usuarioField = TextField(
       obscureText: false,
       style: style,
@@ -116,20 +104,6 @@ class _RegistrarActivityState extends State<RegistrarActivity> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  new Row(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 25.0,
-                      ),
-                      avatar,
-                      SizedBox(
-                        height: 25.0,
-                        width: 20.0,
-                      ),
-                      
-                      btnAvatar,
-                    ],
-                  ),
                   SizedBox(height: 25.0),
                   usuarioField,
                   SizedBox(height: 25.0),

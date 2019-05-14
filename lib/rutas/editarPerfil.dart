@@ -25,13 +25,7 @@ class _EditarPerfilState extends State<EditarPerfil> {
           SizedBox(
             height: 80.0,
           ),
-          showImage(),
-          RaisedButton(
-            child: Text("Subir avatar"),
-            onPressed: () {
-              pickImageFromGallery(ImageSource.gallery);
-            },
-          ),
+          
           TextField(
             decoration: InputDecoration(
               labelText: "Usuario",

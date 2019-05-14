@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:card_settings/card_settings.dart';
 import 'package:flutter/services.dart';
-import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:the_good_plate/auxiliar/formatos.dart';
 
 class ModificarPerfil extends StatefulWidget {
@@ -10,8 +11,13 @@ class ModificarPerfil extends StatefulWidget {
 }
 
 class _ModificarPerfilState extends State<ModificarPerfil> {
-  bool _nuevaPass = false;
-  
+  Future<File> imageFile;
+  pickImageFromGallery(ImageSource source) {
+    setState(() {
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
+
   String _tarjeta = "2154-3658-1024-2147";
   String _genero = 'No binario';
   String _telefono = "622 57 41 89";
@@ -19,10 +25,25 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
   @override
   Widget build(BuildContext context) {
     var keyboardType;
-    return Scaffold(
+    return new Scaffold(
       body: Container(
         child: CardSettings(
           children: <Widget>[
+            new Row(
+              children: <Widget>[
+                SizedBox(
+                  height: 25.0,
+                ),
+                showImage(),
+                CardSettingsButton(
+                  label: "Subir avatar",
+                  backgroundColor: Color.fromRGBO(36, 167, 200, 100),
+                  onPressed: () {
+                    pickImageFromGallery(ImageSource.gallery);
+                  },
+                ),
+              ],
+            ),
             CardSettingsHeader(
               label: 'Información básica',
             ),
@@ -113,6 +134,31 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget showImage() {
+    return new Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(borderRadius: new BorderRadius.circular(50.0)),
+      child: FutureBuilder<File>(
+        future: imageFile,
+        builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done &&
+              snapshot.data != null) {
+            return Image.file(snapshot.data, width: 100, height: 100);
+          } else if (snapshot.error != null) {
+            return const Text(
+              'No ha sido posible añadir su imagen',
+              textAlign: TextAlign.center,
+            );
+          } else {
+            return const Text('No ha seleccionado ninguna imagen',
+                textAlign: TextAlign.center);
+          }
+        },
       ),
     );
   }

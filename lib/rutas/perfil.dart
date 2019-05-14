@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
-import 'package:the_good_plate/auxiliar/animatedFab.dart';
+import 'package:the_good_plate/rutas/modificarPerfil.dart';
+
 
 class PerfilActivity extends StatefulWidget {
   static const nombreRuta = "/perfil";
@@ -34,7 +35,6 @@ class _PerfilActivityState extends State<PerfilActivity> {
                   Stack(
                     children: <Widget>[
                       _buildContenedorSuperior(),
-                   
                       Container(
                         height: 80,
                         width: 80,
@@ -44,7 +44,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
                               image: AssetImage(image), fit: BoxFit.cover),
                         ),
                         margin: EdgeInsets.only(left: 16.0),
-                      ),   new AnimatedFab(),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -58,7 +58,14 @@ class _PerfilActivityState extends State<PerfilActivity> {
           ],
         ),
       ),
-    );
+      floatingActionButton: FloatingActionButton(
+          onPressed: () { Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((BuildContext context) => ModificarPerfil())));},
+          child: Icon(Icons.edit),
+          backgroundColor: Color.fromRGBO(157,107,232,100)));
+
   }
 
   Widget _buildContenedorSuperior() {
