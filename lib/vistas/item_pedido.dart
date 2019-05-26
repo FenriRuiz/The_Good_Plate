@@ -49,6 +49,7 @@ class ItemPedidoState extends State<ItemPedido> {
                 onPressed: () {
                   setState(() {
                     widget._pedido.setcantidad = widget._pedido.cantidad + 1;
+                    
                   });
                 }),
             Text(
@@ -63,7 +64,6 @@ class ItemPedidoState extends State<ItemPedido> {
                 setState(() {
                   if (widget._pedido.cantidad > 1) {
                     widget._pedido.setcantidad = widget._pedido.cantidad - 1;
-                    
                     //TODO: implementar una funcion "borrar" del pedido
                   }
                 });
