@@ -44,25 +44,4 @@ List<ModeloPedido> pedidos = <ModeloPedido>[
       cantidad: 4,
       image:
           "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Dishes-548x202/Chinese/Arroz-Frito-Tres-Delicias-548x202.jpg?h=202&w=548&bid=3f74b90c586f4a83ab851a0593f72d7d&hash=B034682C01530AB30CB2DFDD9321064A"),
- ModeloPedido(
-  nombre: "Feijoada",
-      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
-      precio: 10.5,
-      cantidad: 2,
-      image:
-          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
- ModeloPedido(
-  nombre: "Pos eso",
-      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
-      precio: 10.5,
-      cantidad: 2,
-      image:
-          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
- ModeloPedido(
-  nombre: "Último",
-      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
-      precio: 10.5,
-      cantidad: 2,
-      image:
-          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
 ];

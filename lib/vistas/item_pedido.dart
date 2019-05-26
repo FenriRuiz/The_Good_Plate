@@ -12,6 +12,7 @@ class ItemPedido extends StatefulWidget {
 
 class ItemPedidoState extends State<ItemPedido> {
   ItemPedidoState(ModeloPedido _pedido);
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,10 +20,11 @@ class ItemPedidoState extends State<ItemPedido> {
       elevation: 8.0,
       child: ListTile(
         leading: CircleAvatar(
-            radius: 40.0,
-            backgroundImage: NetworkImage(
-              widget._pedido.image,
-            )),
+          radius: 40.0,
+          backgroundImage: NetworkImage(
+            widget._pedido.image,
+          ),
+        ),
         title: Container(
           height: 150.0,
           child: Column(
@@ -32,8 +34,9 @@ class ItemPedidoState extends State<ItemPedido> {
               new GroceryTitle(text: widget._pedido.nombre),
               new GrocerySubtitle(text: widget._pedido.ingredientes),
               new GrocerySubtitle(
-                  text: "\nPrecio unidad: " +
-                      widget._pedido.precio.toString() +
+                  text: "\nPrecio pedido: " +
+                      (widget._pedido.precio * widget._pedido.cantidad)
+                          .toStringAsFixed(2) +
                       "€"),
             ],
           ),
@@ -59,13 +62,13 @@ class ItemPedidoState extends State<ItemPedido> {
               onPressed: () {
                 setState(() {
                   if (widget._pedido.cantidad > 1) {
-                    widget._pedido.setcantidad= widget._pedido.cantidad - 1;
+                    widget._pedido.setcantidad = widget._pedido.cantidad - 1;
+                    
                     //TODO: implementar una funcion "borrar" del pedido
                   }
                 });
               },
             ),
-            Text(widget._pedido.precio.toString())
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
 
 class PaymentSuccessDialog extends StatelessWidget {
@@ -40,7 +41,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[Text("07/Jun/2019"), Text("21:25")],
+                  children: <Widget>[Text(DateFormat('dd/mm/yyyy').format(DateTime.now()).toString()), Text(DateFormat('kk:mm').format(DateTime.now()).toString())],
                 ),
                 SizedBox(
                   height: 20.0,
@@ -142,7 +143,7 @@ class PaymentSuccessDialog extends StatelessWidget {
     );
   }
     }
-      _volverRestaurante( BuildContext context ) {
+     _volverRestaurante( BuildContext context ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

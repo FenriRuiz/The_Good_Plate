@@ -8,6 +8,7 @@ import 'package:the_good_plate/rutas/login.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class GuillotineMenu extends StatefulWidget {
+
   @override
   _GuillotineMenuState createState() => _GuillotineMenuState();
 }
@@ -303,6 +304,7 @@ Widget _buildImage(context) {
 }
 
 Widget _buildProfileRow() {
+
   return new Padding(
       padding: const EdgeInsets.only(left: 64.0, top: 256.0 / 2.5),
       child: new Row(children: <Widget>[
@@ -318,7 +320,7 @@ Widget _buildProfileRow() {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               new Text(
-                'Chocolate Amargo',
+                'Admin admin',
                 style: new TextStyle(
                     fontSize: 26.0,
                     color: Colors.white,

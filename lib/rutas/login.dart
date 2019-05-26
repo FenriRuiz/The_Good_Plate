@@ -139,7 +139,7 @@ class _LoginActivityState extends State<LoginActivity> {
     );
   }
 
-  MaterialPageRoute buildMaterialPageRoute() {
+  MaterialPageRoute buildMaterialPageRoute(ModeloUsuario user) {
     return MaterialPageRoute(builder: ((BuildContext context) => Guillotine()));
   }
 
@@ -155,7 +155,7 @@ class _LoginActivityState extends State<LoginActivity> {
         if (usuarios[i].contrasenia == controllerPass.text) {
           print(usuarios[i].usuario);
           print('Controlador' + controllerUsuario.text);
-          Navigator.push(context, buildMaterialPageRoute());
+          Navigator.push(context, buildMaterialPageRoute(usuarios[i]));
           correcto = true;
         }
       }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_good_plate/auxiliar/payment_success_dialog.dart';
+import 'package:the_good_plate/auxiliar/dialogo_pago.dart';
 
 
-class BeautifulAlertDialog extends StatelessWidget {
+class AlertaCobro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(

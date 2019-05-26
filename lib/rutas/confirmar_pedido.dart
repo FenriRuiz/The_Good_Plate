@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
-import 'package:the_good_plate/auxiliar/beautiful_alert_dialog.dart';
+import 'package:the_good_plate/auxiliar/dialogo_alertaCobro.dart';
 
 class ConfirmarPedido extends StatefulWidget {
   ConfirmarPedidoState createState() => new ConfirmarPedidoState();
@@ -141,7 +141,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return BeautifulAlertDialog();
+        return AlertaCobro();
       }
     );
   }
