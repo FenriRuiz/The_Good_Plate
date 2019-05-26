@@ -3,6 +3,8 @@ import 'package:the_good_plate/rutas/registrar.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginActivity extends StatefulWidget {
   @override
@@ -10,11 +12,13 @@ class LoginActivity extends StatefulWidget {
 }
 
 class _LoginActivityState extends State<LoginActivity> {
+  final controllerUsuario = TextEditingController();
+  final controllerPass = TextEditingController();
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
   @override
   Widget build(BuildContext context) {
-    
     final userField = TextField(
+      controller: controllerUsuario,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
@@ -25,6 +29,7 @@ class _LoginActivityState extends State<LoginActivity> {
     );
 
     final passwordField = TextField(
+      controller: controllerPass,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
@@ -42,7 +47,10 @@ class _LoginActivityState extends State<LoginActivity> {
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
-          Navigator.push(context, buildMaterialPageRoute());
+          if (!_autenticar(context, ModeloUsuario())) {
+            Fluttertoast.showToast(
+                msg: "Datos incorrectos", toastLength: Toast.LENGTH_SHORT);
+          }
         },
         child: Text("Iniciar sesión",
             textAlign: TextAlign.center,
@@ -140,4 +148,19 @@ class _LoginActivityState extends State<LoginActivity> {
         builder: ((BuildContext context) => RegistrarActivity()));
   }
 
+  bool _autenticar(BuildContext context, ModeloUsuario modeloUsuario) {
+    bool correcto = false;
+    for (int i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].usuario == controllerUsuario.text) {
+        if (usuarios[i].contrasenia == controllerPass.text) {
+          print(usuarios[i].usuario);
+          print('Controlador' + controllerUsuario.text);
+          Navigator.push(context, buildMaterialPageRoute());
+          correcto = true;
+        }
+      }
+    }
+//TODO: implementar algo que muestre al usuario que se ha equivocado
+    return correcto;
+  }
 }

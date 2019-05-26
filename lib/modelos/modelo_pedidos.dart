@@ -1,64 +1,68 @@
-import 'package:flutter/material.dart';
-import 'package:the_good_plate/auxiliar/gtypography.dart';
+class ModeloPedido {
+  String _nombre;
+  String _ingredientes;
+  double _precio;
+  String _image;
+  int _cantidad;
 
-class ListaPedidos extends StatelessWidget {
-  const ListaPedidos({
-    Key key,
-    @required this.nombre,
-    @required this.descripcion,
-    @required this.image,
-    this.price,
-  }) : super(key: key);
-
-  final String nombre;
-  final String descripcion;
-  final String image;
-  final double price;
-
-  @override
-  
-  Widget build(BuildContext context) {
-    return Card(
-      color: Color.fromRGBO(60, 190, 200, 100),
-      elevation: 8.0,
-      child: ListTile(
-        leading: Container(
-            height: 80.0,
-            child: Image.asset(
-              image,
-              height: 80.0,
-            )),
-        title: Container(
-          height: 120.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              new GroceryTitle(text: nombre),
-              new GrocerySubtitle(text: descripcion),
-            ],
-          ),
-        ),
-        trailing: Column(
-          children: <Widget>[
-            IconButton(
-                icon: Icon(Icons.add_circle),
-                color: Colors.cyan,
-                onPressed: () {}),
-            Text(
-              "1",
-              textAlign: TextAlign.right,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            IconButton(
-              icon: Icon(Icons.remove_circle),
-              color: Colors.cyan,
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
-      
-    );
+  ModeloPedido(
+      {String nombre, String ingredientes, double precio, String image, int cantidad}) {
+    this._nombre = nombre;
+    this._ingredientes = ingredientes;
+    this._precio = precio;
+    this._image = image;
+    this._cantidad=cantidad;
   }
+  String get nombre => _nombre;
+  String get ingredientes => _ingredientes;
+  double get precio => _precio;
+  String get image => _image;
+  int get cantidad => _cantidad;
+  set setcantidad (num value) => _cantidad = value;
 }
+
+List<ModeloPedido> pedidos = <ModeloPedido>[
+  ModeloPedido(
+     nombre: "Arroz frito tres delicias",
+      ingredientes: "Arroz, canahoria, guisantes, salsa de soja y huevo",
+      precio: 5.15,
+      cantidad: 1,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Dishes-548x202/Chinese/Arroz-Frito-Tres-Delicias-548x202.jpg?h=202&w=548&bid=3f74b90c586f4a83ab851a0593f72d7d&hash=B034682C01530AB30CB2DFDD9321064A"),
+ 
+  ModeloPedido(
+  nombre: "Feijoada",
+      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
+      precio: 10.5,
+      cantidad: 2,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
+  ModeloPedido(
+     nombre: "Rico y con fundamento",
+      ingredientes: "Arroz, canahoria, guisantes, salsa de soja y huevo",
+      precio: 5.15,
+      cantidad: 4,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Dishes-548x202/Chinese/Arroz-Frito-Tres-Delicias-548x202.jpg?h=202&w=548&bid=3f74b90c586f4a83ab851a0593f72d7d&hash=B034682C01530AB30CB2DFDD9321064A"),
+ ModeloPedido(
+  nombre: "Feijoada",
+      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
+      precio: 10.5,
+      cantidad: 2,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
+ ModeloPedido(
+  nombre: "Pos eso",
+      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
+      precio: 10.5,
+      cantidad: 2,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
+ ModeloPedido(
+  nombre: "Último",
+      ingredientes: "Frijoles, cerdo, arroz, verduras, plátano",
+      precio: 10.5,
+      cantidad: 2,
+      image:
+          "https://www.just-eat.es/CmsAssets/media/Images/Cuisines/Editorial-981x363/Latin-American/6872.jpg?h=363&w=981&bid=2292655a2c4447fdaded99535bbab68b&hash=C22A0E693CA8FD373F59B72ECCE3FAAB"),
+];

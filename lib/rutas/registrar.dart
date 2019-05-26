@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:the_good_plate/auxiliar/camara.dart';
 
 class RegistrarActivity extends StatefulWidget {
   @override

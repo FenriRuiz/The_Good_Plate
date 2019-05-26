@@ -78,7 +78,7 @@ class _MapsActivityState extends State<MapsActivity> {
     centerPosition = position.target;
   }
 
-  void _onAddMarkerButtonPressed() {
+  /*void _onAddMarkerButtonPressed() {
     InfoWindow infoWindow =
         InfoWindow(title: "Location" + markers.length.toString());
     Marker marker = Marker(
@@ -90,5 +90,5 @@ class _MapsActivityState extends State<MapsActivity> {
     setState(() {
       markers.add(marker);
     });
-  }
+  }*/
 }

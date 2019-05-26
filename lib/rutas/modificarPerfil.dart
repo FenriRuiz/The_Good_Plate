@@ -51,7 +51,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
               label: 'Nombre',
               labelAlign: TextAlign.left,
               contentAlign: TextAlign.right,
-              initialValue: 'Ana Pantoja',
+              initialValue: 'Chocolate Amargo',
             ),
             CardSettingsEmail(
               label: 'Correo',

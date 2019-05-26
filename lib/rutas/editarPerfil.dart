@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
 
 class EditarPerfil extends StatefulWidget {
   @override

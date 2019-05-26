@@ -55,9 +55,9 @@ class PaymentSuccessDialog extends StatelessWidget {
                           "PARA:",
                           style: label,
                         ),
-                        Text("Ana Pantoja"),
+                        Text("Chocolate Amargo"),
                         Text(
-                          "Ana.Pantoja@gmail.com",
+                          "chocolate.amargo@gmail.com",
                           style: subtitle,
                         ),
                       ],
@@ -132,7 +132,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                         color: Colors.cyan,
                         colorBrightness: Brightness.dark,
                         onPressed: () {
-                         Navigator.of(_VolverRestaurante(context)).pop(context); //_paymentSuccessDialog(context);
+                         Navigator.of(_volverRestaurante(context)).pop(context); //_paymentSuccessDialog(context);
                         })),
               ],
             ),
@@ -142,7 +142,7 @@ class PaymentSuccessDialog extends StatelessWidget {
     );
   }
     }
-      _VolverRestaurante( BuildContext context ) {
+      _volverRestaurante( BuildContext context ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

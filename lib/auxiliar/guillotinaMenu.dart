@@ -3,8 +3,9 @@ import 'package:the_good_plate/rutas/mapa.dart';
 import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:the_good_plate/rutas/perfil.dart';
-import 'package:the_good_plate/rutas/pedidos.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 import 'package:the_good_plate/rutas/login.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class GuillotineMenu extends StatefulWidget {
   @override
@@ -140,7 +141,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
   void switchUser(String opc) {
     if (opc == "Pedidos") {
       // Fluttertoast.showToast(msg: "No disponible ");
-      Navigator.push(context, buildMaterialPagePedido());
+     Navigator.push(context, buildMaterialPagePedido());
     } else if (opc == "Favoritos") {
       Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
@@ -317,7 +318,7 @@ Widget _buildProfileRow() {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               new Text(
-                'Ana Pantoja',
+                'Chocolate Amargo',
                 style: new TextStyle(
                     fontSize: 26.0,
                     color: Colors.white,
