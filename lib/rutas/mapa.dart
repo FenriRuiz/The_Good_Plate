@@ -6,7 +6,7 @@ import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class MapsActivity extends StatefulWidget {
   static const nombreRuta = "/mapas";
-  
+
   ModeloUsuario user;
   MapsActivity({Key key, @required this.user}) : super(key: key);
 
@@ -15,7 +15,7 @@ class MapsActivity extends StatefulWidget {
 }
 
 class _MapsActivityState extends State<MapsActivity> {
-  static const LatLng _center = const LatLng(38.9860385, -3.9620074);
+  static const LatLng _center = const LatLng(38.9901157, -3.9199803);
   Set<Marker> markers = Set();
   MapType _currentMapType = MapType.normal;
   LatLng centerPosition;
@@ -42,14 +42,16 @@ class _MapsActivityState extends State<MapsActivity> {
             onMapCreated: _onMapCreated,
             mapType: _currentMapType,
             myLocationEnabled: true,
-            rotateGesturesEnabled: false,
-            scrollGesturesEnabled: false,
-            tiltGesturesEnabled: false,
+            rotateGesturesEnabled: true,
+            scrollGesturesEnabled: true,
+            tiltGesturesEnabled: true,
+            compassEnabled: true,
+            zoomGesturesEnabled: true,
             markers: markers,
             onCameraMove: _onCameraMove,
             initialCameraPosition: CameraPosition(
               target: _center,
-              zoom: 11.0,
+              zoom: 17.0,
             ),
           ),
           new GuillotineMenu(user: widget.user),
@@ -66,13 +68,13 @@ class _MapsActivityState extends State<MapsActivity> {
               color: Colors.white,
             ),
           ),
-          /*FloatingActionButton(
+          FloatingActionButton(
             //  onPressed: _onAddMarkerButtonPressed,
-            onPressed: (){},
+            onPressed: (){_onAddMarkerButtonPressed();},
               child: new Icon(
                 Icons.edit_location,
                 color: Colors.white,
-              )),*/
+              )),
         ],
       ),
     );
@@ -82,7 +84,7 @@ class _MapsActivityState extends State<MapsActivity> {
     centerPosition = position.target;
   }
 
-  /*void _onAddMarkerButtonPressed() {
+  void _onAddMarkerButtonPressed() {
     InfoWindow infoWindow =
         InfoWindow(title: "Location" + markers.length.toString());
     Marker marker = Marker(
@@ -94,5 +96,5 @@ class _MapsActivityState extends State<MapsActivity> {
     setState(() {
       markers.add(marker);
     });
-  }*/
+  }
 }

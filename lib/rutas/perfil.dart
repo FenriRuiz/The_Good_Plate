@@ -4,10 +4,10 @@ import 'package:the_good_plate/rutas/modificarPerfil.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class PerfilActivity extends StatefulWidget {
-  static const nombreRuta = "/perfil";
-
   ModeloUsuario user;
   PerfilActivity({Key key, @required this.user}) : super(key: key);
+
+  
   @override
   _PerfilActivityState createState() => new _PerfilActivityState();
 }
@@ -26,7 +26,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: ((BuildContext context) => ModificarPerfil())));
+                    builder: ((BuildContext context) => ModificarPerfil(user: widget.user))));
           },
           child: Icon(Icons.edit),
           backgroundColor: Color.fromRGBO(157, 107, 232, 100)),

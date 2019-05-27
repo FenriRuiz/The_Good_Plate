@@ -43,6 +43,15 @@ class ModeloUsuario {
   String get tarjetaCredito => _tarjetaCredito;
   String get avatar => _avatar;
   set usuario(value) => value;
+  set contrasenia(value) => value;
+  set correo(value) => value;
+  set telefono(value) => value;
+  set informacion(value) => value;
+  set fechaNacimiento(value) => value;
+  set genero(value) => value;
+  set direccion(value) => value;
+  set tarjetaCredito(value) => value;
+  set avatar(value) => value;
 }
 
 List<ModeloUsuario> usuarios = <ModeloUsuario>[

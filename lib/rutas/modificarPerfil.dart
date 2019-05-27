@@ -4,8 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:the_good_plate/auxiliar/formatos.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ModificarPerfil extends StatefulWidget {
+  ModeloUsuario user;
+  ModificarPerfil({Key key, @required this.user}) : super(key: key);
   @override
   _ModificarPerfilState createState() => new _ModificarPerfilState();
 }
@@ -18,10 +22,6 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
     });
   }
 
-  String _tarjeta = "2154-3658-1024-2147";
-  String _genero = 'No binario';
-  String _telefono = "622 57 41 89";
-
   @override
   Widget build(BuildContext context) {
     var keyboardType;
@@ -32,7 +32,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
             new Row(
               children: <Widget>[
                 SizedBox(
-                  height: 25.0,
+                  height: 120.0,
                 ),
                 showImage(),
                 CardSettingsButton(
@@ -48,17 +48,17 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
               label: 'Información básica',
             ),
             CardSettingsText(
-              label: 'Nombre',
+              label: 'Usuario',
               labelAlign: TextAlign.left,
               contentAlign: TextAlign.right,
-              initialValue: 'Chocolate Amargo',
+              initialValue: widget.user.usuario.toString(),
             ),
             CardSettingsEmail(
               label: 'Correo',
               enabled: true,
               labelAlign: TextAlign.left,
               contentAlign: TextAlign.right,
-              initialValue: 'ejemplo@ejemplo.com',
+              initialValue: widget.user.correo.toString(),
               validator: (value) {
                 if (value == null || value.isEmpty)
                   return 'Es necesario un correo.';
@@ -74,11 +74,11 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
               label: 'Género',
               labelAlign: TextAlign.left,
               contentAlign: TextAlign.right,
-              initialValue: _genero,
-              onSaved: (value) => _genero = value,
+              initialValue: widget.user.genero,
+              onSaved: (value) => widget.user.genero = value,
               onChanged: (value) {
                 setState(() {
-                  _genero = value;
+                  widget.user.genero = value;
                 });
               },
               options: <String>['Hombre', 'Mujer', 'No binario', 'Otro'],
@@ -87,7 +87,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
                 label: 'Teléfono',
                 labelAlign: TextAlign.left,
                 contentAlign: TextAlign.right,
-                initialValue: _telefono,
+                initialValue: widget.user.telefono,
                 keyboardType: keyboardType ??
                     TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
@@ -95,7 +95,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
                 ],
                 onChanged: (value) {
                   setState(() {
-                    _telefono = value;
+                    widget.user.telefono = value;
                   });
                 }),
             CardSettingsHeader(
@@ -115,21 +115,23 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
                 label: 'Tarjeta de crédito',
                 labelAlign: TextAlign.left,
                 contentAlign: TextAlign.right,
-                initialValue: _tarjeta,
+                initialValue: widget.user.tarjetaCredito,
                 keyboardType: keyboardType ??
                     TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   MaskedTextInputFormatter(
-                      mask: 'xxxx-xxxx-xxxx-xxxx', separator: '-')
+                      mask: 'xxxx-xxxx-xxxx-xxxx', separator: '-',)
                 ],
                 onChanged: (value) {
                   setState(() {
-                    _tarjeta = value;
+                    widget.user.tarjetaCredito = value;
                   });
                 }),
             CardSettingsButton(
               label: 'Guardar cambios',
-              onPressed: () {},
+              onPressed: () {
+                Fluttertoast.showToast(msg: "Datos actualizados", toastLength: Toast.LENGTH_SHORT);
+              },
               backgroundColor: Color.fromRGBO(36, 167, 200, 100),
             ),
           ],
@@ -141,7 +143,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
   Widget showImage() {
     return new Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(30.0),
       decoration: BoxDecoration(borderRadius: new BorderRadius.circular(50.0)),
       child: FutureBuilder<File>(
         future: imageFile,
@@ -155,7 +157,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
               textAlign: TextAlign.center,
             );
           } else {
-            return const Text('No ha seleccionado ninguna imagen',
+            return const Text('No ha seleccionado\n ninguna imagen',overflow:TextOverflow.ellipsis,maxLines: 2,
                 textAlign: TextAlign.center);
           }
         },
