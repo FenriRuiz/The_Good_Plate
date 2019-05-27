@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
 import 'package:the_good_plate/auxiliar/dialogo_alertaCobro.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class ConfirmarPedido extends StatefulWidget {
+  ModeloUsuario user;
+  ConfirmarPedido({Key key, @required this.user}) : super(key: key);
+
   ConfirmarPedidoState createState() => new ConfirmarPedidoState();
 }
 
@@ -132,17 +136,16 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
             child: new Stack(
               children: <Widget>[
                 _buildBody(context),
-                GuillotineMenu(),
+                GuillotineMenu(user: widget.user),
               ],
             )));
   }
 
   _alertDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertaCobro();
-      }
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return AlertaCobro();
+        });
   }
 }

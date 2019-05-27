@@ -2,9 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class MapsActivity extends StatefulWidget {
   static const nombreRuta = "/mapas";
+  
+  ModeloUsuario user;
+  MapsActivity({Key key, @required this.user}) : super(key: key);
 
   @override
   _MapsActivityState createState() => new _MapsActivityState();
@@ -48,7 +52,7 @@ class _MapsActivityState extends State<MapsActivity> {
               zoom: 11.0,
             ),
           ),
-          new GuillotineMenu(),
+          new GuillotineMenu(user: widget.user),
         ],
       ),
       floatingActionButton: Column(

@@ -42,6 +42,7 @@ class ModeloUsuario {
   String get direccion => _direccion;
   String get tarjetaCredito => _tarjetaCredito;
   String get avatar => _avatar;
+  set usuario(value) => value;
 }
 
 List<ModeloUsuario> usuarios = <ModeloUsuario>[
@@ -70,6 +71,13 @@ List<ModeloUsuario> usuarios = <ModeloUsuario>[
   ModeloUsuario(
     usuario: "admin",
     contrasenia: "admin",
+    correo: "admin.admin@alu.uclm.es",
+    telefono: "624851144",
+    informacion: "Cuenta Administrador",
+    genero: "Otro",
+    direccion: " ",
+    tarjetaCredito: " ",
+    avatar: "https://i.imgur.com/umieV1B.jpg",
   ),
   ModeloUsuario(
     usuario: "",

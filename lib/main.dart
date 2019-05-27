@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/rutas/login.dart';
-import 'package:the_good_plate/rutas/perfil.dart';
 
 void main() {
   runApp(
@@ -15,10 +14,10 @@ void main() {
         accentColor: Color.fromRGBO(36, 167, 200, 100), //azul
       ),
       debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
+      /* routes: <String, WidgetBuilder>{
         '/login': (BuildContext context) => new LoginActivity(),
         '/perfil': (BuildContext context) => new PerfilActivity(),
-      },
+      },*/
     ),
   );
 }

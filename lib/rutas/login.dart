@@ -7,6 +7,8 @@ import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginActivity extends StatefulWidget {
+   ModeloUsuario user;
+  
   @override
   _LoginActivityState createState() => new _LoginActivityState();
 }
@@ -139,8 +141,8 @@ class _LoginActivityState extends State<LoginActivity> {
     );
   }
 
-  MaterialPageRoute buildMaterialPageRoute(ModeloUsuario user) {
-    return MaterialPageRoute(builder: ((BuildContext context) => Guillotine()));
+  MaterialPageRoute buildMaterialPageRoute(ModeloUsuario _user) {
+    return MaterialPageRoute(builder: ((BuildContext context) => Guillotine(user: _user)));
   }
 
   MaterialPageRoute buildMaterialPageRouteRegistro() {

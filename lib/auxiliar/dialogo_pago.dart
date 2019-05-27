@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class PaymentSuccessDialog extends StatelessWidget {
   final image = 'images/avatar.jpg';
@@ -133,7 +134,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                         color: Colors.cyan,
                         colorBrightness: Brightness.dark,
                         onPressed: () {
-                         Navigator.of(_volverRestaurante(context)).pop(context); //_paymentSuccessDialog(context);
+                         Navigator.of(_volverRestaurante(context, ModeloUsuario())).pop(context); //_paymentSuccessDialog(context);
                         })),
               ],
             ),
@@ -143,11 +144,11 @@ class PaymentSuccessDialog extends StatelessWidget {
     );
   }
     }
-     _volverRestaurante( BuildContext context ) {
+     _volverRestaurante( BuildContext context, ModeloUsuario user ) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Guillotine();
+        return Guillotine(user: user);
       }
     );
 }

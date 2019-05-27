@@ -4,10 +4,11 @@ import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:the_good_plate/rutas/perfil.dart';
 import 'package:the_good_plate/rutas/lista_pedidos.dart';
-import 'package:the_good_plate/rutas/login.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class GuillotineMenu extends StatefulWidget {
+  ModeloUsuario user;
+  GuillotineMenu({Key key, @required this.user}) : super(key: key);
 
   @override
   _GuillotineMenuState createState() => _GuillotineMenuState();
@@ -141,8 +142,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   void switchUser(String opc) {
     if (opc == "Pedidos") {
-      // Fluttertoast.showToast(msg: "No disponible ");
-     Navigator.push(context, buildMaterialPagePedido());
+      Navigator.push(context, buildMaterialPagePedido());
     } else if (opc == "Favoritos") {
       Fluttertoast.showToast(msg: "No disponible ");
     } else if (opc == "Mapa") {
@@ -151,6 +151,8 @@ class _GuillotineMenuState extends State<GuillotineMenu>
       Navigator.push(context, buildMaterialPagePerfil());
     } else if (opc == "Cerrar Sesión") {
       canPop(context);
+    } else if (opc == "Sugerencias") {
+      Fluttertoast.showToast(msg: "No disponible ");
     }
   }
 
@@ -181,9 +183,40 @@ class _GuillotineMenuState extends State<GuillotineMenu>
                     child: new Scaffold(
                       body: new Stack(
                         children: <Widget>[
-                          // FittedBox(child: _buildImage()),
                           FittedBox(child: _buildImage(context)),
-                          FittedBox(child: _buildProfileRow()),
+                          FittedBox(
+                            child: new Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 64.0, top: 256.0 / 2.5),
+                              child: new Row(
+                                children: <Widget>[
+                                  new CircleAvatar(
+                                    minRadius: 28.0,
+                                    maxRadius: 28.0,
+                                    backgroundImage:
+                                        NetworkImage(widget.user.avatar),
+                                  ),
+                                  new Padding(
+                                    padding: const EdgeInsets.only(left: 16.0),
+                                    child: new Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        new Text(
+                                          (widget.user.usuario).toString(),
+                                          style: new TextStyle(
+                                              fontSize: 26.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -269,24 +302,24 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   MaterialPageRoute buildMaterialPagePedido() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => PedidosActivity()));
+        builder: ((BuildContext context) => PedidosActivity(user: widget.user)));
   }
 
   MaterialPageRoute buildMaterialPageMaps() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => MapsActivity()));
+        builder: ((BuildContext context) => MapsActivity(user: widget.user)));
   }
 
   MaterialPageRoute buildMaterialPagePerfil() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => PerfilActivity()));
+        builder: ((BuildContext context) => PerfilActivity(user: widget.user)));
   }
 }
 
-MaterialPageRoute buildMaterialPageLogin() {
+/*MaterialPageRoute buildMaterialPageLogin() {
   return MaterialPageRoute(
-      builder: ((BuildContext context) => LoginActivity()));
-}
+      builder: ((BuildContext context) => LoginActivity(user: widget.user)));
+}*/
 
 Widget _buildImage(context) {
   MediaQueryData mediaQueryData = MediaQuery.of(context);
@@ -303,37 +336,8 @@ Widget _buildImage(context) {
   );
 }
 
-Widget _buildProfileRow() {
-
-  return new Padding(
-      padding: const EdgeInsets.only(left: 64.0, top: 256.0 / 2.5),
-      child: new Row(children: <Widget>[
-        new CircleAvatar(
-          minRadius: 28.0,
-          maxRadius: 28.0,
-          backgroundImage: new AssetImage('images/avatar.jpg'),
-        ),
-        new Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              new Text(
-                'Admin admin',
-                style: new TextStyle(
-                    fontSize: 26.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400),
-              ),
-            ],
-          ),
-        )
-      ]));
-}
-
 canPop(BuildContext context) {
-  while(Navigator.of(context).canPop()) {
+  while (Navigator.of(context).canPop()) {
     Navigator.of(context).pop();
   }
 }
