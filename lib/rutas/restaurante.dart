@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/modelos/modelo_platos.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 import 'package:the_good_plate/rutas/lista_platos.dart';
+import 'package:the_good_plate/vistas/item_platos.dart';
 import 'package:the_good_plate/vistas/item_restaurantes.dart';
 
 class Restaurante extends StatefulWidget {
@@ -8,100 +10,108 @@ class Restaurante extends StatefulWidget {
   Restaurante(this._restaurante);
 
   @override
-  _RestauranteState createState() => _RestauranteState();
+  _RestauranteState createState() => _RestauranteState(); 
 }
 
 class _RestauranteState extends State<Restaurante> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  TextStyle styleDistanicia = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0,color: Colors.red);
+
+  var nombreStyle = TextStyle(
+      fontFamily: 'Montserrat',
+      background: Paint()..color = Color.fromRGBO(97, 97, 97, 75),
+      fontSize: 20.0,
+      color: Colors.white);
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: <Widget>[
-        GestureDetector(
-          child: new HeroImage(widget: widget),
-          //child: Image.network(widget._restaurante.imagen),
-
-          onVerticalDragEnd: (DragEndDetails details) {
-            Navigator.pop(context, MaterialPageRoute(builder: (_) {
-              return ItemRestaurante(widget._restaurante);
-            }));
-          },
-        ),
-        Expanded(
-          child: ListaPlatos(),
-        ),
-        //GuillotineMenu()
-      ],
-    ));
-
-    /*Column(children: <Widget>[
-      new GuillotineMenu(),
-      GestureDetector(
-        child: Image.network(widget._restaurante.imagen),
-        //child: Image.network(widget._restaurante.imagen),
-
-        onVerticalDragEnd: (DragEndDetails details) {
-          Navigator.pop(context, MaterialPageRoute(builder: (_) {
-            return ItemRestaurante(widget._restaurante);
-          }));
-        },
-      ),
-      Expanded(child: Scaffold(body: ListaPlatos())),
-    ]);*/
-  }
-}
-
-class HeroImage extends StatelessWidget {
-  const HeroImage({
-    Key key,
-    @required this.widget,
-  }) : super(key: key);
-
-  final Restaurante widget;
-
-  @override
-  Widget build(BuildContext context) {
-    var nombreStyle = TextStyle(
-        fontFamily: 'Montserrat',
-        background: Paint()..color = Color.fromRGBO(0, 0, 0, 60),
-        fontSize: 40.0,
-        color: Colors.white);
-    var distanciaStyle = TextStyle(
-      fontFamily: 'Montserrat',
-      background: Paint()..color = Color.fromRGBO(150, 150, 150, 60),
-      fontSize: 40.0,
-      color: Colors.white);
-    var cuerpoStyle = TextStyle(
-      fontFamily: 'Montserrat',
-      background: Paint()..color = Color.fromRGBO(0, 0, 0, 60),
-      fontSize: 40.0,
-      color: Colors.white);
-    return Column(children: <Widget>[
-      Stack(
-        children: <Widget>[
-          Image.network(widget._restaurante.imagen),
-          Align(
-              alignment: Alignment.bottomLeft,
-              child: Column(
+      body: new CustomScrollView(
+        scrollDirection: Axis.vertical,
+        slivers: <Widget>[
+          new SliverAppBar(
+            expandedHeight: 300.0,
+            pinned: true,
+            flexibleSpace: new FlexibleSpaceBar(
+                title: Text(widget._restaurante.nombre, style: nombreStyle),
+                titlePadding: EdgeInsets.fromLTRB(65, 0, 0, 16),
+                background: GestureDetector(
+                  child: new Image.network(widget._restaurante.imagen,
+                      fit: BoxFit.cover),
+                )),
+          ),
+          new SliverToBoxAdapter(
+            child: new Container(
+              alignment: Alignment.topLeft,
+              color: Colors.grey[800],
+              child: Row(children: <Widget>[
+                Column( 
+                crossAxisAlignment: CrossAxisAlignment.start,
+                
                 children: <Widget>[
-                  SizedBox(height: 150),
-                  Padding(padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0)),
-                  Text(widget._restaurante.nombre + "          ",
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      style: nombreStyle),
-                  Text(
-                      "Distancia: " +
-                          widget._restaurante.distanciaKm.toString() +
-                          " Kms",
-                      textAlign: TextAlign.left,
-                      overflow: TextOverflow.ellipsis,
-                      style: distanciaStyle,)
+                
+                Text(widget._restaurante.descripcion, style: style),
+                FlatButton.icon(
+                 
+                  icon: Icon(Icons.location_on),
+                  onPressed: null,
+                  label:Text("Distancia: "+widget._restaurante.distanciaKm.toString() + " Km"),splashColor: Colors.red, ),
+
+                Text(widget._restaurante.estado),
+
+              ],),
+              Column( 
+                crossAxisAlignment: CrossAxisAlignment.start,
+                
+                children: <Widget>[
+                
+                
+
+              ],)
+
+              ],)
+            )
+          ),
+          new SliverPadding(
+            padding: const EdgeInsets.symmetric(vertical: 2.0),
+            sliver: new SliverFixedExtentList(
+              itemExtent: 305.0,
+              delegate: new SliverChildBuilderDelegate(
+                  (builder, item) => new ItemPlato(platos[item]),
+                  childCount: platos.length),
+            ),
+          ),
+          new SliverToBoxAdapter(
+              child: new Container(
+            alignment: Alignment.center,
+            height: 50.0,
+            color: Colors.grey[800],
+            child: new InkWell(
+              child: new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  new Text(
+                    'Ir a pedidos',
+                    style: new TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0),
+                  ),
+                  new SizedBox(
+                    width: 10.0,
+                  ),
+                  new Icon(
+                    Icons.shopping_basket,
+                    color: Colors.black,
+                    size: 24.0,
+                  )
                 ],
-              ))
+              ),
+              onTap: () {},
+            ),
+          ))
         ],
-      )
-    ]);
+      ),
+    );
   }
 }

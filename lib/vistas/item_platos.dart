@@ -9,19 +9,45 @@ class ItemPlato extends StatefulWidget {
   ItemPlatoState createState() => new ItemPlatoState(_plato);
 }
 
-class ItemPlatoState extends State<ItemPlato> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  bool _isFavorite = true;
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteIconState createState() => _FavoriteIconState();
+}
 
-  _buildCambiarOpinion() {
+class _FavoriteIconState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+            icon: (_isFavorited ? Icon(Icons.favorite) : Icon(Icons.favorite_border)),
+            iconSize: 30,
+            color: Colors.redAccent,
+            onPressed: _toggleFavorite,
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _toggleFavorite() {
     setState(() {
-      if (_isFavorite) {
-        _isFavorite = false;
+      if (_isFavorited) {
+        _isFavorited = false;
       } else {
-        _isFavorite = true;
+        _isFavorited = true;
       }
     });
   }
+}
+
+class ItemPlatoState extends State<ItemPlato> {
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
   ItemPlatoState(ModeloPlato _plato);
   @override
@@ -65,13 +91,7 @@ class ItemPlatoState extends State<ItemPlato> {
                       child: new Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          IconButton(
-                            icon: (_isFavorite
-                                ? Icon(Icons.favorite_border)
-                                : Icon(Icons.favorite)),
-                            color: Colors.redAccent,
-                            onPressed: _buildCambiarOpinion(),
-                          )
+                          FavoriteWidget(),
                         ],
                       ))
                 ],
