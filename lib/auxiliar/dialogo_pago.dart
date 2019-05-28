@@ -2,9 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
-class PaymentSuccessDialog extends StatelessWidget {
+
+class PagoCorrecto extends StatefulWidget {
+  ModeloUsuario user;
+  PedidosActivity pedido;
+  PagoCorrecto({Key key, @required this.user, this.pedido}) : super(key: key);
+
   final image = 'images/avatar.jpg';
+
+  @override
+  _PagoCorrectoState createState() => _PagoCorrectoState();
+}
+
+class _PagoCorrectoState extends State<PagoCorrecto> {
   final TextStyle subtitle = TextStyle(fontSize: 14.0, color: Colors.grey);
   final TextStyle label = TextStyle(fontSize: 16.0, color: Colors.grey);
 
@@ -42,7 +54,12 @@ class PaymentSuccessDialog extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[Text(DateFormat('dd/mm/yyyy').format(DateTime.now()).toString()), Text(DateFormat('kk:mm').format(DateTime.now()).toString())],
+                  children: <Widget>[
+                    Text(DateFormat('dd/mm/yyyy')
+                        .format(DateTime.now())
+                        .toString()),
+                    Text(DateFormat('kk:mm').format(DateTime.now()).toString())
+                  ],
                 ),
                 SizedBox(
                   height: 20.0,
@@ -57,16 +74,16 @@ class PaymentSuccessDialog extends StatelessWidget {
                           "PARA:",
                           style: label,
                         ),
-                        Text("Chocolate Amargo"),
+                        Text(widget.user.usuario.toString()),
                         Text(
-                          "chocolate.amargo@gmail.com",
+                          widget.user.correo.toString(),
                           style: subtitle,
                         ),
                       ],
                     ),
                     CircleAvatar(
                       backgroundColor: Color.fromRGBO(36, 167, 200, 100),
-                      backgroundImage: AssetImage(image),
+                      backgroundImage: AssetImage(widget.user.avatar.toString()),
                     )
                   ],
                 ),
@@ -83,7 +100,7 @@ class PaymentSuccessDialog extends StatelessWidget {
                           "COBRO",
                           style: label,
                         ),
-                        Text("12.5€"),
+                        Text(widget.pedido.total.toString()),
                       ],
                     ),
                     Text(
@@ -128,13 +145,15 @@ class PaymentSuccessDialog extends StatelessWidget {
                   width: 10.0,
                 ),
                 Align(
-                  alignment: Alignment.center,
+                    alignment: Alignment.center,
                     child: RaisedButton(
                         child: Text("Cerrar"),
                         color: Colors.cyan,
                         colorBrightness: Brightness.dark,
                         onPressed: () {
-                         Navigator.of(_volverRestaurante(context, ModeloUsuario())).pop(context); //_paymentSuccessDialog(context);
+                          Navigator.of(
+                                  _volverRestaurante(context, ModeloUsuario()))
+                              .pop(context); //_paymentSuccessDialog(context);
                         })),
               ],
             ),
@@ -143,12 +162,12 @@ class PaymentSuccessDialog extends StatelessWidget {
       ),
     );
   }
-    }
-     _volverRestaurante( BuildContext context, ModeloUsuario user ) {
-    showDialog(
+}
+
+_volverRestaurante(BuildContext context, ModeloUsuario user) {
+  showDialog(
       context: context,
       builder: (BuildContext context) {
         return Guillotine(user: user);
-      }
-    );
+      });
 }

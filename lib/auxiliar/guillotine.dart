@@ -12,7 +12,6 @@ class Guillotine extends StatefulWidget {
 }
 
 class _GuillotineState extends State<Guillotine> {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

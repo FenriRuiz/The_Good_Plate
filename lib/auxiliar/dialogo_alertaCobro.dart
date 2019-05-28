@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/dialogo_pago.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
 
-class AlertaCobro extends StatelessWidget {
+class AlertaCobro extends StatefulWidget {
+  ModeloUsuario user;
+PedidosActivity pedido;
+  AlertaCobro({Key key, @required this.user, this.pedido}) : super(key: key);
+
+  @override
+  _AlertaCobroState createState() => _AlertaCobroState();
+}
+
+class _AlertaCobroState extends State<AlertaCobro> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -27,10 +38,13 @@ class AlertaCobro extends StatelessWidget {
                 width: 20.0,
               ),
               CircleAvatar(
-                radius: 55,
-                backgroundColor: Colors.grey.shade200,
-                child: Icon(Icons.announcement, size: 90.0, color: Colors.red,)
-              ),
+                  radius: 55,
+                  backgroundColor: Colors.grey.shade200,
+                  child: Icon(
+                    Icons.announcement,
+                    size: 90.0,
+                    color: Colors.red,
+                  )),
               SizedBox(
                 width: 20.0,
               ),
@@ -47,7 +61,10 @@ class AlertaCobro extends StatelessWidget {
                       height: 10.0,
                     ),
                     Flexible(
-                      child: Text("¿Desea continuar con el pago?",style: TextStyle(color: Colors.grey,)),
+                      child: Text("¿Desea continuar con el pago?",
+                          style: TextStyle(
+                            color: Colors.grey,
+                          )),
                     ),
                     SizedBox(
                       height: 10.0,
@@ -73,8 +90,7 @@ class AlertaCobro extends StatelessWidget {
                             color: Colors.green,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
-                              //_paymentSuccessDialog(context);
-                              Navigator.of(_paymentSuccessDialog(context)).pop();
+                              Navigator.of(_pagoCorrectoDialogo(context)).pop();
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
@@ -91,13 +107,12 @@ class AlertaCobro extends StatelessWidget {
       ),
     );
   }
-      _paymentSuccessDialog( BuildContext context ) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return PaymentSuccessDialog();
-      }
-    );
-  }
 
+  _pagoCorrectoDialogo(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return PagoCorrecto(user: widget.user, pedido: widget.pedido);
+        });
+  }
 }

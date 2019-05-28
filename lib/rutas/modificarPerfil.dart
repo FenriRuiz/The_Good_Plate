@@ -130,7 +130,7 @@ class _ModificarPerfilState extends State<ModificarPerfil> {
             CardSettingsButton(
               label: 'Guardar cambios',
               onPressed: () {
-                Fluttertoast.showToast(msg: "Datos actualizados", toastLength: Toast.LENGTH_SHORT);
+                Fluttertoast.showToast(msg: "No actualiza, no hay BBDD", toastLength: Toast.LENGTH_SHORT);
               },
               backgroundColor: Color.fromRGBO(36, 167, 200, 100),
             ),

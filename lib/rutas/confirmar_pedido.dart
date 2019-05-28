@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
 import 'package:the_good_plate/auxiliar/dialogo_alertaCobro.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
 class ConfirmarPedido extends StatefulWidget {
   ModeloUsuario user;
-  ConfirmarPedido({Key key, @required this.user}) : super(key: key);
+  PedidosActivity pedido;
+  ConfirmarPedido({Key key, @required this.user, this.pedido}) : super(key: key);
 
   ConfirmarPedidoState createState() => new ConfirmarPedidoState();
 }
@@ -25,7 +27,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Subtotal: "),
-                Text("$total €"),
+                Text((widget.pedido.subtotal).toString()+"€"),
               ],
             ),
             SizedBox(
@@ -35,7 +37,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Gastos de envío:"),
-                Text("$entrega €"),
+                Text(widget.pedido.envio.toString()+"€"),
               ],
             ),
             SizedBox(
@@ -46,7 +48,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               children: <Widget>[
                 Text("Total", style: Theme.of(context).textTheme.title),
                 Text(
-                  "${total + entrega} €",
+                  widget.pedido.total.toString()+"€",
                   style: Theme.of(context).textTheme.title,
                 ),
               ],
@@ -64,7 +66,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               children: <Widget>[
                 RadioListTile(
                   selected: true,
-                  value: direccion,
+                  value: widget.user.direccion.toString(),
                   groupValue: direccion,
                   title: Text(direccion),
                   onChanged: (value) {},
@@ -84,7 +86,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
                 ),
                 RadioListTile(
                   selected: true,
-                  value: telefono,
+                  value: widget.user.direccion.toString(),
                   groupValue: telefono,
                   title: Text(telefono),
                   onChanged: (value) {},
