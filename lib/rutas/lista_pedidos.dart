@@ -10,7 +10,7 @@ class PedidosActivity extends StatefulWidget {
   PedidosActivity pedido;
   PedidosActivity({Key key, @required this.user}) : super(key: key);
   double total = 0.0;
-  double subtotal=0.0;
+  double subtotal = 0.0;
   double envio = 0.0;
 
   @override
@@ -40,11 +40,12 @@ class _PedidosActivityState extends State<PedidosActivity> {
             child: Stack(
               children: <Widget>[
                 Container(
-                  height: 560,
+                  height: 475,
                   child: _lista(context),
                 ),
                 Container(
-                  child: _buildTotals(context, ModeloPedido(), total, envio, subtotal),
+                  child: _buildTotals(
+                      context, ModeloPedido(), total, envio, subtotal),
                   alignment: Alignment.bottomCenter,
                 ),
               ],
@@ -53,8 +54,10 @@ class _PedidosActivityState extends State<PedidosActivity> {
 
   MaterialPageRoute buildMaterialPageRouteConfirmarPedido() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) =>
-            ConfirmarPedido(user: widget.user, pedido: widget.pedido,)));
+        builder: ((BuildContext context) => ConfirmarPedido(
+              user: widget.user,
+              pedido: widget.pedido,
+            )));
   }
 
   Widget _lista(BuildContext context) {
@@ -64,26 +67,34 @@ class _PedidosActivityState extends State<PedidosActivity> {
     );
   }
 
-  Widget _buildTotals(
-      BuildContext context, ModeloPedido pedido, double total, double envio, double subtotal) {
+  Widget _buildTotals(BuildContext context, ModeloPedido pedido, double total,
+      double envio, double subtotal) {
     return ClipOval(
         clipper: OvalTopBorderClipper(),
         child: Material(
           child: Container(
-            height: 180,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 5.0,
-                    color: Color.fromRGBO(60, 190, 200, 100),
-                    spreadRadius: 80.0),
-              ],
-              color: Colors.grey[800],
-            ),
-            padding: EdgeInsets.only(
-                left: 20.0, right: 20.0, top: 40.0, bottom: 10.0),
-            child: Column(
-              children: <Widget>[
+              height: 150,
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                      blurRadius: 55.0,
+                      color: Color.fromRGBO(60, 190, 200, 100),
+                      spreadRadius: 80.0),
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.0,0.3],
+                  colors:[
+                    Color.fromRGBO(17, 53, 56, 100),
+                    Colors.grey[800]
+                  ]
+                ),
+                //color: Colors.grey[800],
+              ),
+              padding: EdgeInsets.only(
+                  left: 10.0, right: 20.0, top: 30.0, bottom: 10.0),
+              child: Column(children: <Widget>[
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,48 +142,67 @@ class _PedidosActivityState extends State<PedidosActivity> {
                           color: Colors.white,
                         ),
                       ),
-                      Text(((_total(context, pedido, envio, total, subtotal)) + "€"),
+                      Text(
+                          ((_total(context, pedido, envio, total, subtotal)) +
+                              "€"),
                           style:
                               TextStyle(fontSize: 18.0, color: Colors.white)),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 20.0,
                 ),
-                RaisedButton(
-                  color: Color.fromRGBO(60, 190, 200, 100),
-                  onPressed: () {
-                    setState(() {});
-                    Navigator.push(
-                        context, buildMaterialPageRouteConfirmarPedido());
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Text(
-                        "Continua para confirmar",
-                        style: TextStyle(color: Colors.white),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    RaisedButton(
+                      color: Colors.red[300],
+                      onPressed: () {
+                        setState(() {});
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                            "Cancelar pedido",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    RaisedButton(
+                      color: Color.fromRGBO(60, 190, 200, 100),
+                      onPressed: () {
+                        setState(() {});
+                        Navigator.push(
+                            context, buildMaterialPageRouteConfirmarPedido());
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                            "Confirmar pedido",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ])),
         ));
   }
 
   double _subtotal(BuildContext context, ModeloPedido pedido, double subtotal) {
-    
     for (int i = 0; i < pedidos.length; i++) {
       subtotal += (pedidos[i].cantidad * pedidos[i].precio);
     }
     return subtotal;
   }
 
-  String _total(
-      BuildContext context, ModeloPedido pedido, double envio, double total, double subtotal) {
+  String _total(BuildContext context, ModeloPedido pedido, double envio,
+      double total, double subtotal) {
     total = _subtotal(context, pedido, subtotal) + envio;
     return total.toStringAsFixed(2).toString();
   }
