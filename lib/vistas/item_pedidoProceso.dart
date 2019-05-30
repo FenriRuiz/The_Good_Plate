@@ -22,21 +22,73 @@ class ItemPedidoProcesoState extends State<ItemPedidoProceso> {
         child: ListTile(
           leading: Icon(
             _asignarIcono(widget._pedidoProceso),
-            size: 50.0,
+            color: Colors.deepPurple,
+            size: 70.0,
           ),
           title: Container(
-            height: 150.0,
+            height: 100.0,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  widget._pedidoProceso.estado.toString(),
-                  style: TextStyle(fontSize: 12.0),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "ESTADO:",
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      Text(
+                        widget._pedidoProceso.estado.toString(),
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(widget._pedidoProceso.id.toString()),
-                Text(widget._pedidoProceso.precio.toString()),
-                Text(widget._pedidoProceso.restaurante.toString())
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "FACTURA:",
+                        style: TextStyle(fontSize:  12.0, color: Colors.black),
+                      ),
+                      Text(
+                        widget._pedidoProceso.id.toString(),
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "PRECIO TOTAL:",
+                        style: TextStyle(fontSize:  12.0, color: Colors.black),
+                      ),
+                      Text(
+                        widget._pedidoProceso.precio.toString() + "€",
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        "RESTAURANTE:",
+                        style: TextStyle(fontSize:  12.0, color: Colors.black), 
+                      ),
+                      Text(
+                        widget._pedidoProceso.restaurante.toString(),
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),

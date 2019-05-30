@@ -43,7 +43,7 @@ class _TabsPedidosState extends State<TabsPedidos> {
                       Icons.access_time,
                       size: 20.0,
                     ),
-                    text: "En proceso",
+                    text: "Historial",
                   ),
                 ],
               ),
