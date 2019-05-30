@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
-import 'package:the_good_plate/auxiliar/dialogo_alertaCobro.dart';
+import 'package:the_good_plate/dialogos/dialogo_alertaCobro.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
@@ -147,7 +147,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertaCobro();
+          return AlertaCobro(user: widget.user);
         });
   }
 }

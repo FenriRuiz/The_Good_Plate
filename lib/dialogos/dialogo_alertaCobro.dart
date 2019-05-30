@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_good_plate/auxiliar/dialogo_pago.dart';
+import 'package:the_good_plate/dialogos/dialogo_pago.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/lista_pedidos.dart';
 

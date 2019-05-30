@@ -3,8 +3,9 @@ import 'package:the_good_plate/rutas/mapa.dart';
 import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:the_good_plate/rutas/perfil.dart';
-import 'package:the_good_plate/rutas/lista_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:the_good_plate/auxiliar/backPedidos.dart';
+
 
 class GuillotineMenu extends StatefulWidget {
   ModeloUsuario user;
@@ -302,7 +303,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   MaterialPageRoute buildMaterialPagePedido() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => PedidosActivity(user: widget.user)));
+        builder: ((BuildContext context) => TabsPedidos(user: widget.user)));
   }
 
   MaterialPageRoute buildMaterialPageMaps() {
