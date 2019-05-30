@@ -10,20 +10,22 @@ class Restaurante extends StatefulWidget {
   Restaurante(this._restaurante);
 
   @override
-  _RestauranteState createState() => _RestauranteState(); 
+  _RestauranteState createState() => _RestauranteState();
 }
 
 class _RestauranteState extends State<Restaurante> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  TextStyle styleDistanicia = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0,color: Colors.red);
+  TextStyle styleDistanicia =
+      TextStyle(fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.red);
 
   var nombreStyle = TextStyle(
       fontFamily: 'Montserrat',
-      background: Paint()..color = Color.fromRGBO(97, 97, 97, 75),
-      fontSize: 20.0,
+      background: Paint()..color = Color.fromRGBO(97, 97, 97, 100),
+      fontSize: 30.0,
       color: Colors.white);
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: new CustomScrollView(
         scrollDirection: Axis.vertical,
@@ -32,45 +34,52 @@ class _RestauranteState extends State<Restaurante> {
             expandedHeight: 300.0,
             pinned: true,
             flexibleSpace: new FlexibleSpaceBar(
-                title: Text(widget._restaurante.nombre, style: nombreStyle),
-                titlePadding: EdgeInsets.fromLTRB(65, 0, 0, 16),
+                title: Text("       "+widget._restaurante.nombre+" ", style: nombreStyle),
+                titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
                 background: GestureDetector(
                   child: new Image.network(widget._restaurante.imagen,
                       fit: BoxFit.cover),
                 )),
           ),
           new SliverToBoxAdapter(
-            child: new Container(
-              alignment: Alignment.topLeft,
-              color: Colors.grey[800],
-              child: Row(children: <Widget>[
-                Column( 
-                crossAxisAlignment: CrossAxisAlignment.start,
-                
-                children: <Widget>[
-                
-                Text(widget._restaurante.descripcion, style: style),
-                FlatButton.icon(
-                 
-                  icon: Icon(Icons.location_on),
-                  onPressed: null,
-                  label:Text("Distancia: "+widget._restaurante.distanciaKm.toString() + " Km"),splashColor: Colors.red, ),
-
-                Text(widget._restaurante.estado),
-
-              ],),
-              Column( 
-                crossAxisAlignment: CrossAxisAlignment.start,
-                
-                children: <Widget>[
-                
-                
-
-              ],)
-
-              ],)
-            )
-          ),
+              child: new Container(
+                  color: Colors.grey[800],
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          widget._restaurante.descripcion,
+                          style: style,
+                        ),
+                        Wrap(
+                          spacing: 5.0,
+                          
+                          children: <Widget>[
+                          FlatButton.icon(
+                            icon: Icon(Icons.location_on),
+                            onPressed: null,
+                            label: Text("Distancia: " +
+                                widget._restaurante.distanciaKm.toString() +
+                                " Km"),
+                            splashColor: Colors.red,
+                          ),
+                          FlatButton.icon(
+                            icon: Icon(Icons.adjust),
+                            onPressed: null,
+                            label: Text(widget._restaurante.estado),
+                            splashColor: Colors.red,
+                          ),
+                          FavoriteWidget(),
+                          IconButton(
+                            icon: Icon(Icons.shopping_cart),
+                            onPressed: () {},
+                          )
+                        ])
+                      ],
+                    ),
+                  ))),
           new SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: 2.0),
             sliver: new SliverFixedExtentList(
