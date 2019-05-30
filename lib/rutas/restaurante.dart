@@ -1,9 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
-import 'package:the_good_plate/rutas/lista_platos.dart';
 import 'package:the_good_plate/vistas/item_platos.dart';
-import 'package:the_good_plate/vistas/item_restaurantes.dart';
 
 class Restaurante extends StatefulWidget {
   final ModeloRestaurante _restaurante;
@@ -25,7 +23,6 @@ class _RestauranteState extends State<Restaurante> {
       color: Colors.white);
 
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: new CustomScrollView(
         scrollDirection: Axis.vertical,
@@ -34,7 +31,8 @@ class _RestauranteState extends State<Restaurante> {
             expandedHeight: 300.0,
             pinned: true,
             flexibleSpace: new FlexibleSpaceBar(
-                title: Text("       "+widget._restaurante.nombre+" ", style: nombreStyle),
+                title: Text("       " + widget._restaurante.nombre + " ",
+                    style: nombreStyle),
                 titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
                 background: GestureDetector(
                   child: new Image.network(widget._restaurante.imagen,
@@ -45,18 +43,15 @@ class _RestauranteState extends State<Restaurante> {
               child: new Container(
                   color: Colors.grey[800],
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          widget._restaurante.descripcion,
+                          "   "+widget._restaurante.descripcion,
                           style: style,
                         ),
-                        Wrap(
-                          spacing: 5.0,
-                          
-                          children: <Widget>[
+                        Wrap( children: <Widget>[
                           FlatButton.icon(
                             icon: Icon(Icons.location_on),
                             onPressed: null,

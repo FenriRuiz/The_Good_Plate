@@ -53,7 +53,7 @@ List<ModeloRestaurante> restaurantes = <ModeloRestaurante>[
   ModeloRestaurante(
       nombre: "Tampu",
       distanciaKm: 10.0,
-      estado: "A punto de cerrar",
+      estado: "Cerrado",
       descripcion: "El cielo peruano está en Chueca",
       imagen: "https://eatandlovemadrid.es/wordpress/wp-content/uploads/2016/11/EL-TAMBO-DEL-INCA-2.jpg",
       patrocinado: true,
@@ -85,7 +85,7 @@ List<ModeloRestaurante> restaurantes = <ModeloRestaurante>[
   ModeloRestaurante(
       nombre: "Brasserie Antoinette",
       distanciaKm: 34.0,
-      estado: "A punto de abrir",
+      estado: "Abierto",
       descripcion: "Bon appétit mademoiselle!",
       imagen: "https://eatandlovemadrid.es/wordpress/wp-content/uploads/2018/05/IMG_4957-1.jpg",
       patrocinado: false,
