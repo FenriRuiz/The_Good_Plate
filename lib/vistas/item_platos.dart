@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 
 class ItemPlato extends StatefulWidget {
-  final ModeloPlato _plato;
   ItemPlato(this._plato);
+  ModeloPlato _plato;
 
   @override
   ItemPlatoState createState() => new ItemPlatoState(_plato);
@@ -25,7 +25,9 @@ class _FavoriteIconState extends State<FavoriteWidget> {
         Container(
           padding: EdgeInsets.all(0),
           child: IconButton(
-            icon: (_isFavorited ? Icon(Icons.favorite) : Icon(Icons.favorite_border)),
+            icon: (_isFavorited
+                ? Icon(Icons.favorite)
+                : Icon(Icons.favorite_border)),
             iconSize: 30,
             color: Colors.redAccent,
             onPressed: _toggleFavorite,
@@ -48,8 +50,9 @@ class _FavoriteIconState extends State<FavoriteWidget> {
 
 class ItemPlatoState extends State<ItemPlato> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-
-  ItemPlatoState(ModeloPlato _plato);
+  
+  ItemPlatoState(ModeloPlato plato);
+  int cantidad = 0;
   @override
   Widget build(BuildContext context) {
     return new InkWell(
@@ -78,24 +81,58 @@ class ItemPlatoState extends State<ItemPlato> {
                     ),
                   ),
                   new Container(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    padding: const EdgeInsets.fromLTRB(25, 0, 25, 5),
                     child: Text(
                       widget._plato.ingredientes,
                       style:
-                          TextStyle(fontFamily: 'Montserrat', fontSize: 15.0),
+                          TextStyle(fontFamily: 'Montserrat', fontSize: 17.0),
                       softWrap: true,
                     ),
                   ),
-                  new Padding(
-                      padding: new EdgeInsets.all(7.0),
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          FavoriteWidget(),
-                        ],
-                      ))
+                  new Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      FavoriteWidget(),
+                      IconButton(
+                        icon: Icon(Icons.remove_circle),
+                        color: Colors.white,
+                        onPressed: () {
+                          setState(() {
+                            if (cantidad >= 1) {
+                              cantidad = cantidad - 1;
+                            }
+                          });
+                        },
+                      ),
+                      Text(
+                        cantidad.toString(),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.add_circle),
+                          color: Colors.white,
+                          onPressed: () {
+                            setState(() {
+                              cantidad = cantidad + 1;
+                            });
+                          }),
+                      IconButton(
+                          icon: Icon(Icons.add_shopping_cart),
+                          color: Colors.white,
+                          onPressed: () {
+                            buildSetState(widget._plato);
+                          }),
+                    ],
+                  ),
                 ],
               ),
             )));
+  }
+
+  void buildSetState(ModeloPlato plato) {
+    return setState(() {
+      cantidad = 0;
+    });
   }
 }

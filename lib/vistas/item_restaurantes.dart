@@ -21,7 +21,7 @@ class _ItemRestauranteState extends State<ItemRestaurante> {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(widget._restaurante,))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(widget._restaurante))),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Card(

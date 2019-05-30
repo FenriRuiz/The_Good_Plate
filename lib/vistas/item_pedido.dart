@@ -3,8 +3,10 @@ import 'package:the_good_plate/auxiliar/gtypography.dart';
 import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 
 class ItemPedido extends StatefulWidget {
-  final ModeloPedido _pedido;
+  ModeloPedido _pedido;
+
   ItemPedido(this._pedido);
+
 
   @override
   ItemPedidoState createState() => new ItemPedidoState(_pedido);

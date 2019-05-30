@@ -1,11 +1,16 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 import 'package:the_good_plate/vistas/item_platos.dart';
 
 class Restaurante extends StatefulWidget {
   final ModeloRestaurante _restaurante;
+
   Restaurante(this._restaurante);
+  
+  
 
   @override
   _RestauranteState createState() => _RestauranteState();
@@ -23,99 +28,81 @@ class _RestauranteState extends State<Restaurante> {
       color: Colors.white);
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: new CustomScrollView(
-        scrollDirection: Axis.vertical,
-        slivers: <Widget>[
-          new SliverAppBar(
-            expandedHeight: 300.0,
-            pinned: true,
-            flexibleSpace: new FlexibleSpaceBar(
-                title: Text("       " + widget._restaurante.nombre + " ",
-                    style: nombreStyle),
-                titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
-                background: GestureDetector(
-                  child: new Image.network(widget._restaurante.imagen,
-                      fit: BoxFit.cover),
-                )),
-          ),
-          new SliverToBoxAdapter(
-              child: new Container(
-                  color: Colors.grey[800],
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "   "+widget._restaurante.descripcion,
-                          style: style,
-                        ),
-                        Wrap( children: <Widget>[
-                          FlatButton.icon(
-                            icon: Icon(Icons.location_on),
-                            onPressed: null,
-                            label: Text("Distancia: " +
-                                widget._restaurante.distanciaKm.toString() +
-                                " Km"),
-                            splashColor: Colors.red,
-                          ),
-                          FlatButton.icon(
-                            icon: Icon(Icons.adjust),
-                            onPressed: null,
-                            label: Text(widget._restaurante.estado),
-                            splashColor: Colors.red,
-                          ),
-                          FavoriteWidget(),
-                          IconButton(
-                            icon: Icon(Icons.shopping_cart),
-                            onPressed: () {},
-                          )
-                        ])
-                      ],
-                    ),
-                  ))),
-          new SliverPadding(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
-            sliver: new SliverFixedExtentList(
-              itemExtent: 305.0,
-              delegate: new SliverChildBuilderDelegate(
-                  (builder, item) => new ItemPlato(platos[item]),
-                  childCount: platos.length),
-            ),
-          ),
-          new SliverToBoxAdapter(
-              child: new Container(
-            alignment: Alignment.center,
-            height: 50.0,
-            color: Colors.grey[800],
-            child: new InkWell(
-              child: new Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  new Text(
-                    'Ir a pedidos',
-                    style: new TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0),
-                  ),
-                  new SizedBox(
-                    width: 10.0,
-                  ),
-                  new Icon(
-                    Icons.shopping_basket,
-                    color: Colors.black,
-                    size: 24.0,
-                  )
-                ],
+    return Stack(
+      children: <Widget>[
+        Scaffold(
+          body: new CustomScrollView(
+            scrollDirection: Axis.vertical,
+            slivers: <Widget>[
+              new SliverAppBar(
+                expandedHeight: 300.0,
+                pinned: true,
+                flexibleSpace: new FlexibleSpaceBar(
+                    title: Text("       " + widget._restaurante.nombre + " ",
+                        style: nombreStyle),
+                    titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
+                    background: GestureDetector(
+                      child: new Image.network(widget._restaurante.imagen,
+                          fit: BoxFit.cover),
+                    )),
               ),
-              onTap: () {},
-            ),
-          ))
-        ],
-      ),
+              new SliverToBoxAdapter(
+                  child: new Container(
+                      color: Colors.grey[800],
+                      child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                                padding: EdgeInsets.fromLTRB(26, 5, 16, 0),
+                                child: Text(
+                                  widget._restaurante.descripcion,
+                                  style: style,
+                                )),
+                            Wrap(children: <Widget>[
+                              FlatButton.icon(
+                                icon: Icon(Icons.location_on),
+                                onPressed: null,
+                                label: Text("Distancia: " +
+                                    widget._restaurante.distanciaKm.toString() +
+                                    " Km"),
+                                splashColor: Colors.red,
+                              ),
+                              FlatButton.icon(
+                                icon: Icon(Icons.adjust),
+                                onPressed: null,
+                                label: Text(widget._restaurante.estado),
+                                splashColor: Colors.red,
+                              ),
+                              FavoriteWidget(),
+                            ])
+                          ],
+                        ),
+                      ))),
+              new SliverPadding(
+                padding: const EdgeInsets.symmetric(vertical: 2.0),
+                sliver: new SliverFixedExtentList(
+                  itemExtent: 305.0,
+                  delegate: new SliverChildBuilderDelegate(
+                      (builder, item) => new ItemPlato(platos[item]),
+                      childCount: platos.length),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 45, 20, 0),
+                child: FloatingActionButton(
+                  backgroundColor: Colors.grey[800],
+                  foregroundColor: Colors.white,
+                  onPressed: () {},
+                  child: Icon(Icons.shopping_cart),
+                ))),
+      ],
     );
   }
 }
