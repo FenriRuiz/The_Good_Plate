@@ -5,8 +5,8 @@ class ModeloPedido {
   String _image;
   int _cantidad;
 
-  ModeloPedido(
-      {String nombre, String ingredientes, double precio, String image, int cantidad}) {
+  ModeloPedido({ 
+      String nombre, String ingredientes, double precio, String image, int cantidad}) {
     this._nombre = nombre;
     this._ingredientes = ingredientes;
     this._precio = precio;

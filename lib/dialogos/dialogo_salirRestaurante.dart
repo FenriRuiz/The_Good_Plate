@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:the_good_plate/dialogos/dialogo_pago.dart';
-import 'package:the_good_plate/modelos/modelo_usuarios.dart';
-import 'package:the_good_plate/rutas/lista_pedidos.dart';
+import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 
-
-class AlertaCobro extends StatefulWidget {
-  ModeloUsuario user;
-PedidosActivity pedido;
-  AlertaCobro({Key key, @required this.user, this.pedido}) : super(key: key);
-
+class SalirRestaurante extends StatefulWidget {
   @override
-  _AlertaCobroState createState() => _AlertaCobroState(user, pedido);
+  _SalirRestauranteState createState() => _SalirRestauranteState();
 }
 
-class _AlertaCobroState extends State<AlertaCobro> {
-  _AlertaCobroState(ModeloUsuario user, PedidosActivity pedido);
-
+class _SalirRestauranteState extends State<SalirRestaurante> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -63,7 +54,7 @@ class _AlertaCobroState extends State<AlertaCobro> {
                       height: 10.0,
                     ),
                     Flexible(
-                      child: Text("¿Desea continuar con el pago?",
+                      child: Text("Si sale del restaurante se cancelará el pedido",
                           style: TextStyle(
                             color: Colors.grey,
                           )),
@@ -75,7 +66,7 @@ class _AlertaCobroState extends State<AlertaCobro> {
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text("No"),
+                            child: Text("Quedarme"),
                             color: Colors.red,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
@@ -88,11 +79,11 @@ class _AlertaCobroState extends State<AlertaCobro> {
                         SizedBox(width: 10.0),
                         Expanded(
                           child: RaisedButton(
-                            child: Text("Si"),
+                            child: Text("Salir"),
                             color: Colors.green,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
-                              Navigator.of(_pagoCorrectoDialogo(context)).pop();
+                              Navigator.pop(context, MaterialPageRoute(builder: (context)=> RestaurantesRecomendados()));
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
@@ -108,13 +99,5 @@ class _AlertaCobroState extends State<AlertaCobro> {
         ),
       ),
     );
-  }
-
-  _pagoCorrectoDialogo(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return PagoCorrecto(user: widget.user, pedido: widget.pedido);
-        });
   }
 }

@@ -9,7 +9,7 @@ class ConfirmarPedido extends StatefulWidget {
   PedidosActivity pedido;
   ConfirmarPedido({Key key, @required this.user, this.pedido}) : super(key: key);
 
-  ConfirmarPedidoState createState() => new ConfirmarPedidoState();
+  ConfirmarPedidoState createState() => new ConfirmarPedidoState(user, pedido);
 }
 
 class ConfirmarPedidoState extends State<ConfirmarPedido> {
@@ -17,6 +17,8 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
   String telefono = "622 548 103";
   double total = 11.5;
   double entrega = 1;
+
+  ConfirmarPedidoState(ModeloUsuario user, PedidosActivity pedido);
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
@@ -27,7 +29,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Subtotal: "),
-                Text((widget.pedido.subtotal).toString()+"€"),
+                Text(widget.pedido.subtotal.toString()+"€"),
               ],
             ),
             SizedBox(
@@ -147,7 +149,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertaCobro(user: widget.user);
+          return AlertaCobro(user: widget.user, pedido: widget.pedido,);
         });
   }
 }

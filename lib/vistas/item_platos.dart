@@ -1,12 +1,15 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 
 class ItemPlato extends StatefulWidget {
-  ItemPlato(this._plato);
   ModeloPlato _plato;
+  List<ModeloPedido> _listaPedido;
+  ItemPlato(this._plato, this._listaPedido);
+
 
   @override
-  ItemPlatoState createState() => new ItemPlatoState(_plato);
+  ItemPlatoState createState() => new ItemPlatoState();
 }
 
 class FavoriteWidget extends StatefulWidget {
@@ -50,8 +53,7 @@ class _FavoriteIconState extends State<FavoriteWidget> {
 
 class ItemPlatoState extends State<ItemPlato> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  
-  ItemPlatoState(ModeloPlato plato);
+
   int cantidad = 0;
   @override
   Widget build(BuildContext context) {
@@ -121,7 +123,7 @@ class ItemPlatoState extends State<ItemPlato> {
                           icon: Icon(Icons.add_shopping_cart),
                           color: Colors.white,
                           onPressed: () {
-                            buildSetState(widget._plato);
+                            anidadirPlato(widget._plato);
                           }),
                     ],
                   ),
@@ -130,8 +132,21 @@ class ItemPlatoState extends State<ItemPlato> {
             )));
   }
 
-  void buildSetState(ModeloPlato plato) {
-    return setState(() {
+  anidadirPlato(ModeloPlato plato) {
+    setState(() {
+      if (cantidad > 0) {
+        ModeloPedido modPed = new ModeloPedido(
+            nombre: plato.nombre,
+            ingredientes: plato.ingredientes,
+            precio: plato.precio,
+            cantidad: cantidad,
+            image: plato.imagen);
+        widget._listaPedido.add(modPed);
+        Scaffold.of(context).showSnackBar(new SnackBar(
+          content: new Text(
+              "Añadido, " + widget._plato.nombre + " x" + cantidad.toString()),
+        ));
+      }
       cantidad = 0;
     });
   }
