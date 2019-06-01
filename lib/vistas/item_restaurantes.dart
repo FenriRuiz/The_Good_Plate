@@ -1,10 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/restaurante.dart';
 
 class ItemRestaurante extends StatefulWidget {
   final ModeloRestaurante _restaurante;
-  ItemRestaurante(this._restaurante);
+  ModeloUsuario user;
+  ItemRestaurante(this._restaurante, this.user);
 
   @override
   _ItemRestauranteState createState() => _ItemRestauranteState(_restaurante);
@@ -21,7 +23,7 @@ class _ItemRestauranteState extends State<ItemRestaurante> {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(widget._restaurante))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> Restaurante(widget._restaurante, widget.user))),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Card(

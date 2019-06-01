@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/rutas/mapa.dart';
 import 'package:the_good_plate/auxiliar/diagonal_clipper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,6 +10,7 @@ import 'package:the_good_plate/auxiliar/backPedidos.dart';
 
 class GuillotineMenu extends StatefulWidget {
   ModeloUsuario user;
+  List<ModeloPedido> _listaPedido = <ModeloPedido>[];
   GuillotineMenu({Key key, @required this.user}) : super(key: key);
 
   @override
@@ -62,6 +64,14 @@ class _GuillotineMenuState extends State<GuillotineMenu>
       "color": Colors.white,
     }
   ];
+
+  List<ModeloPedido> _listaPedido;
+
+  List<ModeloPedido> get listaPedido => _listaPedido;
+
+  set listaPedido(List<ModeloPedido> listaPedido) {
+    _listaPedido = listaPedido;
+  }
 
   @override
   void initState() {
@@ -303,7 +313,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   MaterialPageRoute buildMaterialPagePedido() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => TabsPedidos(user: widget.user)));
+        builder: ((BuildContext context) => TabsPedidos(widget._listaPedido,user: widget.user)));
   }
 
   MaterialPageRoute buildMaterialPageMaps() {

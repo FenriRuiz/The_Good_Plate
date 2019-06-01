@@ -7,11 +7,9 @@ import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 
 class PedidosActivity extends StatefulWidget {
   ModeloUsuario user;
-  PedidosActivity pedido;
-  PedidosActivity({Key key, @required this.user}) : super(key: key);
-  double total = 0.0;
-  double subtotal = 0.0;
-  double envio = 0.0;
+  List<ModeloPedido> pedido;
+  PedidosActivity(this.pedido, {Key key, @required this.user})
+      : super(key: key);
 
   @override
   _PedidosActivityState createState() => _PedidosActivityState();
@@ -34,8 +32,8 @@ class _PedidosActivityState extends State<PedidosActivity> {
             onTap: () {
               //!Solo se actualiza el pedido si se presiona en algun lugar despues de cambiar la cantidad
               setState(() {});
-              _total(context, ModeloPedido(), envio, total, subtotal);
-              _subtotal(context, ModeloPedido(), subtotal);
+              _total(context, List<ModeloPedido>(), envio, total, subtotal);
+              _subtotal(context, List<ModeloPedido>(), subtotal);
             },
             child: Stack(
               children: <Widget>[
@@ -45,7 +43,7 @@ class _PedidosActivityState extends State<PedidosActivity> {
                 ),
                 Container(
                   child: _buildTotals(
-                      context, ModeloPedido(), total, envio, subtotal),
+                      context, List<ModeloPedido>(), total, envio, subtotal),
                   alignment: Alignment.bottomCenter,
                 ),
               ],
@@ -61,14 +59,15 @@ class _PedidosActivityState extends State<PedidosActivity> {
   }
 
   Widget _lista(BuildContext context) {
+    //if(widget.pedido.length )
     return new ListView.builder(
-      itemCount: pedidos.length,
-      itemBuilder: (context, int item) => new ItemPedido(pedidos[item]),
+      itemCount: widget.pedido.length,
+      itemBuilder: (context, int item) => new ItemPedido(widget.pedido[item]),
     );
   }
 
-  Widget _buildTotals(BuildContext context, ModeloPedido pedido, double total,
-      double envio, double subtotal) {
+  Widget _buildTotals(BuildContext context, List<ModeloPedido> pedido,
+      double total, double envio, double subtotal) {
     return ClipOval(
         clipper: OvalTopBorderClipper(),
         child: Material(
@@ -82,14 +81,16 @@ class _PedidosActivityState extends State<PedidosActivity> {
                       spreadRadius: 80.0),
                 ],
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.0,0.3],
-                  colors:[
-                    Color.fromRGBO(17, 53, 56, 100),
-                    Colors.grey[800]
-                  ]
-                ),
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [
+                      0.0,
+                      0.3
+                    ],
+                    colors: [
+                      Color.fromRGBO(17, 53, 56, 100),
+                      Colors.grey[800]
+                    ]),
                 //color: Colors.grey[800],
               ),
               padding: EdgeInsets.only(
@@ -103,7 +104,7 @@ class _PedidosActivityState extends State<PedidosActivity> {
                           style:
                               TextStyle(fontSize: 15.0, color: Colors.white)),
                       Text(
-                          ((_subtotal(context, pedido, subtotal)
+                          ((_subtotal(context, widget.pedido, subtotal)
                                   .toStringAsFixed(2)
                                   .toString()) +
                               "€"),
@@ -143,7 +144,8 @@ class _PedidosActivityState extends State<PedidosActivity> {
                         ),
                       ),
                       Text(
-                          ((_total(context, pedido, envio, total, subtotal)) +
+                          ((_total(context, widget.pedido, envio, total,
+                                  subtotal)) +
                               "€"),
                           style:
                               TextStyle(fontSize: 18.0, color: Colors.white)),
@@ -194,16 +196,17 @@ class _PedidosActivityState extends State<PedidosActivity> {
         ));
   }
 
-  double _subtotal(BuildContext context, ModeloPedido pedido, double subtotal) {
-    for (int i = 0; i < pedidos.length; i++) {
-      subtotal += (pedidos[i].cantidad * pedidos[i].precio);
+  double _subtotal(
+      BuildContext context, List<ModeloPedido> pedido, double subtotal) {
+    for (int i = 0; i < widget.pedido.length; i++) {
+      subtotal += (widget.pedido[i].cantidad * widget.pedido[i].precio);
     }
     return subtotal;
   }
 
-  String _total(BuildContext context, ModeloPedido pedido, double envio,
+  String _total(BuildContext context, List<ModeloPedido> pedido, double envio,
       double total, double subtotal) {
-    total = _subtotal(context, pedido, subtotal) + envio;
+    total = _subtotal(context, widget.pedido, subtotal) + envio;
     return total.toStringAsFixed(2).toString();
   }
 }

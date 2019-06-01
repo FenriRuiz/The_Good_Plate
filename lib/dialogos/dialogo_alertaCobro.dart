@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/dialogos/dialogo_pago.dart';
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
-
 class AlertaCobro extends StatefulWidget {
   ModeloUsuario user;
-PedidosActivity pedido;
+  List<ModeloPedido> pedido;
   AlertaCobro({Key key, @required this.user, this.pedido}) : super(key: key);
 
   @override
-  _AlertaCobroState createState() => _AlertaCobroState(user, pedido);
+  _AlertaCobroState createState() => _AlertaCobroState();
 }
 
 class _AlertaCobroState extends State<AlertaCobro> {
-  _AlertaCobroState(ModeloUsuario user, PedidosActivity pedido);
+  //_AlertaCobroState(ModeloUsuario user, PedidosActivity pedido);
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class _GuillotineState extends State<Guillotine> {
         child: new Stack(
           alignment: Alignment.topLeft,
           children: <Widget>[
-            new RestaurantesRecomendados(),
+            new RestaurantesRecomendados(widget.user),
             new GuillotineMenu(
               user: widget.user,
             ),

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
 
 class PagoCorrecto extends StatefulWidget {
   ModeloUsuario user;
-  PedidosActivity pedido;
+  List<ModeloPedido> pedido;
   PagoCorrecto({Key key, @required this.user, this.pedido}) : super(key: key);
 
   final image = 'images/avatar.jpg';
@@ -100,7 +101,7 @@ class _PagoCorrectoState extends State<PagoCorrecto> {
                           "COBRO",
                           style: label,
                         ),
-                        Text(widget.pedido.total.toString()),
+                        Text(widget.pedido.toString()),
                       ],
                     ),
                     Text(

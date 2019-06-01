@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:the_good_plate/auxiliar/guillotinaMenu.dart';
 import 'package:the_good_plate/dialogos/dialogo_alertaCobro.dart';
+import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
-import 'package:the_good_plate/rutas/lista_pedidos.dart';
 
 class ConfirmarPedido extends StatefulWidget {
   ModeloUsuario user;
-  PedidosActivity pedido;
+  List<ModeloPedido> pedido;
   ConfirmarPedido({Key key, @required this.user, this.pedido}) : super(key: key);
 
-  ConfirmarPedidoState createState() => new ConfirmarPedidoState(user, pedido);
+  ConfirmarPedidoState createState() => new ConfirmarPedidoState();
 }
 
 class ConfirmarPedidoState extends State<ConfirmarPedido> {
@@ -18,9 +18,12 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
   double total = 11.5;
   double entrega = 1;
 
-  ConfirmarPedidoState(ModeloUsuario user, PedidosActivity pedido);
+  //ConfirmarPedidoState(ModeloUsuario user, PedidosActivity pedido);
 
   Widget _buildBody(BuildContext context) {
+    double total = 0.0;
+    double envio = 1.0;
+    double subtotal = 0.0;
     return SingleChildScrollView(
         padding: EdgeInsets.only(left: 20.0, top: 40.0, bottom: 10.0),
         child: Column(
@@ -29,7 +32,8 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Subtotal: "),
-                Text(widget.pedido.subtotal.toString()+"€"),
+                Text(_subtotal(widget.pedido, subtotal).toString()+" €"),
+                //Text(widget.pedido.subtotal.toString()+"€"),
               ],
             ),
             SizedBox(
@@ -39,7 +43,8 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Gastos de envío:"),
-                Text(widget.pedido.envio.toString()+"€"),
+                Text(envio.toString()+"€"),
+                //Text(widget.pedido.envio.toString()+"€"),
               ],
             ),
             SizedBox(
@@ -50,7 +55,8 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               children: <Widget>[
                 Text("Total", style: Theme.of(context).textTheme.title),
                 Text(
-                  widget.pedido.total.toString()+"€",
+                  _total(widget.pedido, envio, total, subtotal)+" €",
+                  //widget.pedido.total.toString()+"€",
                   style: Theme.of(context).textTheme.title,
                 ),
               ],
@@ -151,5 +157,17 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
         builder: (BuildContext context) {
           return AlertaCobro(user: widget.user, pedido: widget.pedido,);
         });
+  }
+  double _subtotal(List<ModeloPedido> pedido, double subtotal) {
+    for (int i = 0; i < widget.pedido.length; i++) {
+      subtotal += (widget.pedido[i].cantidad * widget.pedido[i].precio);
+    }
+    return subtotal;
+  }
+
+  String _total(List<ModeloPedido> pedido, double envio,
+      double total, double subtotal) {
+      total = _subtotal(pedido, subtotal) + envio;
+    return total.toStringAsFixed(2).toString();
   }
 }

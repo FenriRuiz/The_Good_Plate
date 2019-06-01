@@ -1,13 +1,17 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/auxiliar/backPedidos.dart';
 import 'package:the_good_plate/dialogos/dialogo_salirRestaurante.dart';
 import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_platos.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
+import 'package:the_good_plate/rutas/lista_pedidos.dart';
 import 'package:the_good_plate/vistas/item_platos.dart';
 
 class Restaurante extends StatefulWidget {
   final ModeloRestaurante _restaurante;
-  Restaurante(this._restaurante);
+  ModeloUsuario user;
+  Restaurante(this._restaurante, this.user);
   List<ModeloPedido> _listaPedido = <ModeloPedido>[];
 
   List<ModeloPedido> get listaPedido => _listaPedido;
@@ -110,7 +114,9 @@ class _RestauranteState extends State<Restaurante> {
                 child: FloatingActionButton(
                   backgroundColor: Colors.grey[800],
                   foregroundColor: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    return Navigator.push(context, MaterialPageRoute(builder: (context)=> TabsPedidos(widget._listaPedido, user: widget.user)));
+                  },
                   child: Icon(Icons.shopping_cart),
                 ))),
       ],

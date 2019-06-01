@@ -1,8 +1,11 @@
 import "package:flutter/material.dart";
+import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/lista_restaurantes.dart';
 import 'package:the_good_plate/modelos/modelo_restaurantes.dart';
 
 class RestaurantesRecomendados extends StatefulWidget {
+  ModeloUsuario user;
+  RestaurantesRecomendados(this.user);
   @override
   _RestaurantesRecomendadosState createState() =>
       new _RestaurantesRecomendadosState();
@@ -30,7 +33,7 @@ with SingleTickerProviderStateMixin {
         body: Column(
           children: <Widget>[
             SizedBox(height: 80.0),
-            Expanded(child: ListaRestaurantes())
+            Expanded(child: ListaRestaurantes(widget.user))
           ],
         ));
   }
