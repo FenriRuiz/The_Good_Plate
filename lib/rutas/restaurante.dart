@@ -17,9 +17,6 @@ class Restaurante extends StatefulWidget {
   }
 
 
-
-  
-
   @override
   _RestauranteState createState() => _RestauranteState();
 }
@@ -44,10 +41,12 @@ class _RestauranteState extends State<Restaurante> {
             scrollDirection: Axis.vertical,
             slivers: <Widget>[
               new SliverAppBar(
+                automaticallyImplyLeading: false,
                 expandedHeight: 300.0,
+                
                 pinned: true,
                 flexibleSpace: new FlexibleSpaceBar(
-                    title: Text("       " + widget._restaurante.nombre + " ",
+                    title: Text("   " + widget._restaurante.nombre + " ",
                         style: nombreStyle),
                     titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
                     background: GestureDetector(
@@ -120,7 +119,8 @@ class _RestauranteState extends State<Restaurante> {
 
    salirRestaurante(List<ModeloPedido> listaPedido){ 
       if(listaPedido.length > 0){
-        SalirRestaurante();
+        
+        return Navigator.push(context, MaterialPageRoute(builder: (context)=> SalirRestaurante()));
       }
       else{
         return Navigator.of(context).pop();

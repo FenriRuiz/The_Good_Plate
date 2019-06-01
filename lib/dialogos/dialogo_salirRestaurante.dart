@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:the_good_plate/rutas/restaurantes_recomendados.dart';
 
 class SalirRestaurante extends StatefulWidget {
   @override
@@ -9,6 +8,7 @@ class SalirRestaurante extends StatefulWidget {
 class _SalirRestauranteState extends State<SalirRestaurante> {
   @override
   Widget build(BuildContext context) {
+    
     return Center(
       child: Dialog(
         elevation: 0,
@@ -54,7 +54,7 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
                       height: 10.0,
                     ),
                     Flexible(
-                      child: Text("Si sale del restaurante se cancelará el pedido",
+                      child: Text("Si sale el pedido se cancelará",
                           style: TextStyle(
                             color: Colors.grey,
                           )),
@@ -66,24 +66,26 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text("Quedarme"),
+                            child: Text("Salir"),
                             color: Colors.red,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
+                              Navigator.pop(context);
                               Navigator.pop(context);
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
                           ),
                         ),
-                        SizedBox(width: 10.0),
+                        SizedBox(width: 2.0),
                         Expanded(
-                          child: RaisedButton(
-                            child: Text("Salir"),
+                          child: RaisedButton(                        
+                            child: Text("Quedar"),
                             color: Colors.green,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
-                              Navigator.pop(context, MaterialPageRoute(builder: (context)=> RestaurantesRecomendados()));
+                              Navigator.pop(context);
+                              
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0)),
