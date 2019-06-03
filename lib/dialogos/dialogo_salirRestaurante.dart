@@ -30,12 +30,12 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
               SizedBox(
                 width: 20.0,
               ),
-              CircleAvatar(
-                  radius: 55,
+             CircleAvatar(
+                  radius: 45,
                   backgroundColor: Colors.grey.shade200,
                   child: Icon(
                     Icons.announcement,
-                    size: 90.0,
+                    size: 70.0,
                     color: Colors.red,
                   )),
               SizedBox(
@@ -54,7 +54,7 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
                       height: 10.0,
                     ),
                     Flexible(
-                      child: Text("Si sale el pedido se cancelará",
+                      child: Text("¿Desea salir? En ese caso, se cancelará el pedido actual",
                           style: TextStyle(
                             color: Colors.grey,
                           )),
@@ -66,7 +66,7 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
                       children: <Widget>[
                         Expanded(
                           child: RaisedButton(
-                            child: Text("Salir"),
+                            child: Text("Si"),
                             color: Colors.red,
                             colorBrightness: Brightness.dark,
                             onPressed: () {
@@ -80,7 +80,7 @@ class _SalirRestauranteState extends State<SalirRestaurante> {
                         SizedBox(width: 2.0),
                         Expanded(
                           child: RaisedButton(                        
-                            child: Text("Quedar"),
+                            child: Text("No"),
                             color: Colors.green,
                             colorBrightness: Brightness.dark,
                             onPressed: () {

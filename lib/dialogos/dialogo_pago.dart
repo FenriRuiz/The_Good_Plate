@@ -3,16 +3,12 @@ import 'package:intl/intl.dart';
 import 'package:the_good_plate/auxiliar/guillotine.dart';
 import 'package:the_good_plate/modelos/modelo_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
-import 'package:the_good_plate/rutas/lista_pedidos.dart';
-
+import 'package:the_good_plate/auxiliar/metodosPedido.dart';
 
 class PagoCorrecto extends StatefulWidget {
   ModeloUsuario user;
   List<ModeloPedido> pedido;
   PagoCorrecto({Key key, @required this.user, this.pedido}) : super(key: key);
-
-  final image = 'images/avatar.jpg';
-
   @override
   _PagoCorrectoState createState() => _PagoCorrectoState();
 }
@@ -20,6 +16,7 @@ class PagoCorrecto extends StatefulWidget {
 class _PagoCorrectoState extends State<PagoCorrecto> {
   final TextStyle subtitle = TextStyle(fontSize: 14.0, color: Colors.grey);
   final TextStyle label = TextStyle(fontSize: 16.0, color: Colors.grey);
+  Metodos metodos = new Metodos();
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +80,8 @@ class _PagoCorrectoState extends State<PagoCorrecto> {
                       ],
                     ),
                     CircleAvatar(
-                      backgroundColor: Color.fromRGBO(36, 167, 200, 100),
-                      backgroundImage: AssetImage(widget.user.avatar.toString()),
-                    )
+                        backgroundColor: Color.fromRGBO(36, 167, 200, 100),
+                        backgroundImage: NetworkImage(widget.user.avatar))
                   ],
                 ),
                 SizedBox(
@@ -101,7 +97,7 @@ class _PagoCorrectoState extends State<PagoCorrecto> {
                           "COBRO",
                           style: label,
                         ),
-                        Text(widget.pedido.toString()),
+                        Text(metodos.precioTotal() + "€"),
                       ],
                     ),
                     Text(
@@ -134,7 +130,7 @@ class _PagoCorrectoState extends State<PagoCorrecto> {
                             "Tarjéta de crédito/débido",
                           ),
                           Text(
-                            "Master card ****-2147",
+                            "Master card ****2147",
                             style: subtitle,
                           ),
                         ],
@@ -151,11 +147,11 @@ class _PagoCorrectoState extends State<PagoCorrecto> {
                         child: Text("Cerrar"),
                         color: Colors.cyan,
                         colorBrightness: Brightness.dark,
-                        onPressed: () {
+                      /*  onPressed: () {
                           Navigator.of(
                                   _volverRestaurante(context, ModeloUsuario()))
-                              .pop(context); //_paymentSuccessDialog(context);
-                        })),
+                              .dispose(); //_paymentSuccessDialog(context);
+                        }*/)),
               ],
             ),
           ),

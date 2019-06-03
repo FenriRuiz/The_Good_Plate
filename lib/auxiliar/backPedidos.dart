@@ -4,11 +4,11 @@ import 'package:the_good_plate/rutas/lista_pedidos.dart';
 import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 import 'package:the_good_plate/rutas/pedido_proceso.dart';
 
-
 class TabsPedidos extends StatefulWidget {
   ModeloUsuario user;
   List<ModeloPedido> _listaPedido;
-  TabsPedidos(this._listaPedido,{Key key, @required this.user}) : super(key: key);
+  TabsPedidos(this._listaPedido, {Key key, @required this.user})
+      : super(key: key);
 
   @override
   _TabsPedidosState createState() => _TabsPedidosState();
@@ -16,7 +16,6 @@ class TabsPedidos extends StatefulWidget {
 
 class _TabsPedidosState extends State<TabsPedidos> {
   final feedRefresh = ChangeNotifier();
-
   @override
   void initState() {
     super.initState();
@@ -51,7 +50,7 @@ class _TabsPedidosState extends State<TabsPedidos> {
             ),
             body: TabBarView(
               children: [
-                PedidosActivity(widget._listaPedido,user: widget.user),
+                PedidosActivity(pedidos, user: widget.user),
                 PedidoProcesoActivity(),
               ],
             )),

@@ -29,6 +29,9 @@ class ItemPedidoProcesoState extends State<ItemPedidoProceso> {
             height: 100.0,
             child: Column(
               children: <Widget>[
+                SizedBox(
+                  height: 10.0,
+                ),
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +53,7 @@ class ItemPedidoProcesoState extends State<ItemPedidoProceso> {
                     children: <Widget>[
                       Text(
                         "FACTURA:",
-                        style: TextStyle(fontSize:  12.0, color: Colors.black),
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
                       ),
                       Text(
                         widget._pedidoProceso.id.toString(),
@@ -65,7 +68,7 @@ class ItemPedidoProcesoState extends State<ItemPedidoProceso> {
                     children: <Widget>[
                       Text(
                         "PRECIO TOTAL:",
-                        style: TextStyle(fontSize:  12.0, color: Colors.black),
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
                       ),
                       Text(
                         widget._pedidoProceso.precio.toString() + "€",
@@ -80,7 +83,7 @@ class ItemPedidoProcesoState extends State<ItemPedidoProceso> {
                     children: <Widget>[
                       Text(
                         "RESTAURANTE:",
-                        style: TextStyle(fontSize:  12.0, color: Colors.black), 
+                        style: TextStyle(fontSize: 12.0, color: Colors.black),
                       ),
                       Text(
                         widget._pedidoProceso.restaurante.toString(),

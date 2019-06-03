@@ -141,7 +141,8 @@ class ItemPlatoState extends State<ItemPlato> {
             precio: plato.precio,
             cantidad: cantidad,
             image: plato.imagen);
-        widget._listaPedido.add(modPed);
+       // widget._listaPedido.add(modPed);
+       pedidos.add(modPed);
         Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text(
               "Añadido, " + widget._plato.nombre + " x" + cantidad.toString()),

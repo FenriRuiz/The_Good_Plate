@@ -13,8 +13,6 @@ class PerfilActivity extends StatefulWidget {
 }
 
 class _PerfilActivityState extends State<PerfilActivity> {
-  final image = 'images/avatar.jpg';
-
   final double expandedSize = 180.0;
   final double hiddenSize = 20.0;
 
@@ -37,7 +35,7 @@ class _PerfilActivityState extends State<PerfilActivity> {
             SizedBox(
               height: 250,
               width: double.infinity,
-              child: Image.asset(image, fit: BoxFit.cover),
+              child: Image.asset(widget.user.avatar, fit: BoxFit.cover),
             ),
             Container(
               margin: EdgeInsets.fromLTRB(16.0, 200.0, 16.0, 16.0),

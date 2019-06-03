@@ -13,14 +13,7 @@ class Restaurante extends StatefulWidget {
   ModeloUsuario user;
   Restaurante(this._restaurante, this.user);
   List<ModeloPedido> _listaPedido = <ModeloPedido>[];
-
-  List<ModeloPedido> get listaPedido => _listaPedido;
-
-  set listaPedido(List<ModeloPedido> listaPedido) {
-    _listaPedido = listaPedido;
-  }
-
-
+  
   @override
   _RestauranteState createState() => _RestauranteState();
 }
@@ -55,7 +48,7 @@ class _RestauranteState extends State<Restaurante> {
                     titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
                     background: GestureDetector(
                       onTap: (){
-                        salirRestaurante(widget.listaPedido);
+                        salirRestaurante(pedidos);
                       },
                       child: new Image.network(widget._restaurante.imagen,
                           fit: BoxFit.cover),
@@ -100,7 +93,7 @@ class _RestauranteState extends State<Restaurante> {
                 sliver: new SliverFixedExtentList(
                   itemExtent: 305.0,
                   delegate: new SliverChildBuilderDelegate(
-                      (builder, item) => new ItemPlato(platos[item], widget.listaPedido),
+                      (builder, item) => new ItemPlato(platos[item], pedidos),
                       childCount: platos.length),
                 ),
               ),

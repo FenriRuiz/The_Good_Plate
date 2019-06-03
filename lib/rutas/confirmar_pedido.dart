@@ -7,18 +7,14 @@ import 'package:the_good_plate/modelos/modelo_usuarios.dart';
 class ConfirmarPedido extends StatefulWidget {
   ModeloUsuario user;
   List<ModeloPedido> pedido;
-  ConfirmarPedido({Key key, @required this.user, this.pedido}) : super(key: key);
+  ConfirmarPedido({Key key, @required this.user, this.pedido})
+      : super(key: key);
 
   ConfirmarPedidoState createState() => new ConfirmarPedidoState();
 }
 
 class ConfirmarPedidoState extends State<ConfirmarPedido> {
-  String direccion = "C/ San Miguel, 24, Ciudad Real";
-  String telefono = "622 548 103";
-  double total = 11.5;
-  double entrega = 1;
-
-  //ConfirmarPedidoState(ModeloUsuario user, PedidosActivity pedido);
+  int selectedRadioTile = 0;
 
   Widget _buildBody(BuildContext context) {
     double total = 0.0;
@@ -32,7 +28,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Subtotal: "),
-                Text(_subtotal(widget.pedido, subtotal).toString()+" €"),
+                Text(_subtotal(widget.pedido, subtotal).toString() + " €"),
                 //Text(widget.pedido.subtotal.toString()+"€"),
               ],
             ),
@@ -43,7 +39,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text("Gastos de envío:"),
-                Text(envio.toString()+"€"),
+                Text(envio.toString() + "€"),
                 //Text(widget.pedido.envio.toString()+"€"),
               ],
             ),
@@ -55,7 +51,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               children: <Widget>[
                 Text("Total", style: Theme.of(context).textTheme.title),
                 Text(
-                  _total(widget.pedido, envio, total, subtotal)+" €",
+                  _total(widget.pedido, envio, total, subtotal) + " €",
                   //widget.pedido.total.toString()+"€",
                   style: Theme.of(context).textTheme.title,
                 ),
@@ -75,14 +71,14 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
                 RadioListTile(
                   selected: true,
                   value: widget.user.direccion.toString(),
-                  groupValue: direccion,
-                  title: Text(direccion),
+                  groupValue: widget.user.direccion.toString(),
+                  title: Text(widget.user.direccion.toString()),
                   onChanged: (value) {},
                 ),
                 RadioListTile(
                   selected: false,
                   value: "Añadir dirección",
-                  groupValue: direccion,
+                  groupValue: widget.user.direccion.toString(),
                   title: Text("Elige una nueva dirección de entrega"),
                   onChanged: (value) {},
                 ),
@@ -94,17 +90,18 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
                 ),
                 RadioListTile(
                   selected: true,
-                  value: widget.user.direccion.toString(),
-                  groupValue: telefono,
-                  title: Text(telefono),
-                  onChanged: (value) {},
+                  value: widget.user.telefono.toString(),
+                  groupValue: widget.user.telefono.toString(),
+                  title: Text(widget.user.telefono.toString()),
+                  onChanged: (value) { },
                 ),
                 RadioListTile(
                   selected: false,
-                  value: "Nuevo Teléfono",
-                  groupValue: telefono,
+                  value: "Telefono nuevo",
+                  groupValue: widget.user.telefono.toString(),
                   title: Text("Elija un nuevo número de contacto"),
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                  },
                 ),
               ],
             ),
@@ -118,6 +115,7 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
               child: Text("Opciones de pago".toUpperCase()),
             ),
             RadioListTile(
+              selected: true,
               groupValue: true,
               value: true,
               title: Text("Tarjeta de crédito/débito"),
@@ -155,9 +153,13 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertaCobro(user: widget.user, pedido: widget.pedido,);
+          return AlertaCobro(
+            user: widget.user,
+            pedido: widget.pedido,
+          );
         });
   }
+
   double _subtotal(List<ModeloPedido> pedido, double subtotal) {
     for (int i = 0; i < widget.pedido.length; i++) {
       subtotal += (widget.pedido[i].cantidad * widget.pedido[i].precio);
@@ -165,9 +167,9 @@ class ConfirmarPedidoState extends State<ConfirmarPedido> {
     return subtotal;
   }
 
-  String _total(List<ModeloPedido> pedido, double envio,
-      double total, double subtotal) {
-      total = _subtotal(pedido, subtotal) + envio;
+  String _total(
+      List<ModeloPedido> pedido, double envio, double total, double subtotal) {
+    total = _subtotal(pedido, subtotal) + envio;
     return total.toStringAsFixed(2).toString();
   }
 }

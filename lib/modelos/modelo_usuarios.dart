@@ -84,13 +84,8 @@ List<ModeloUsuario> usuarios = <ModeloUsuario>[
     telefono: "624851144",
     informacion: "Cuenta Administrador",
     genero: "Otro",
-    direccion: " ",
-    tarjetaCredito: " ",
+    direccion: "C/ Tomillo Ciudad Real ",
+    tarjetaCredito: "0000-0000-0000-0000",
     avatar: "https://i.imgur.com/umieV1B.jpg",
-  ),
-  ModeloUsuario(
-    usuario: "",
-    contrasenia: "",
-    avatar: "https://i.imgur.com/LYZbGqy.png",
   ),
 ];

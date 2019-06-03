@@ -40,11 +40,11 @@ class _AlertaCobroState extends State<AlertaCobro> {
                 width: 20.0,
               ),
               CircleAvatar(
-                  radius: 55,
+                  radius: 45,
                   backgroundColor: Colors.grey.shade200,
                   child: Icon(
                     Icons.announcement,
-                    size: 90.0,
+                    size: 70.0,
                     color: Colors.red,
                   )),
               SizedBox(

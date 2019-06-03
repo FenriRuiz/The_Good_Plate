@@ -313,7 +313,7 @@ class _GuillotineMenuState extends State<GuillotineMenu>
 
   MaterialPageRoute buildMaterialPagePedido() {
     return MaterialPageRoute(
-        builder: ((BuildContext context) => TabsPedidos(widget._listaPedido,user: widget.user)));
+        builder: ((BuildContext context) => TabsPedidos(widget._listaPedido,user: widget.user,)));
   }
 
   MaterialPageRoute buildMaterialPageMaps() {
